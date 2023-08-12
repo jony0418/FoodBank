@@ -4,9 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Uncomment import statement below after building queries and mutations
 // import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-import Home from './pages/Home';
-import Matchup from './pages/Matchup';
-import Vote from './pages/Vote';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 
 function App() {
   return (
@@ -15,16 +14,16 @@ function App() {
         <Routes>
           <Route 
             path="/" 
-            element={<Home />} 
+            element={<Login/>} 
           />
           <Route 
-            path="/matchup" 
-            element={<Matchup />} 
+            path="/register" 
+            element={<Register/>} 
           />
-          <Route 
+          {/* <Route 
             path="/matchup/:id" 
             element={<Vote />} 
-          />
+          /> */}
         </Routes>
       </div>
     </Router>
