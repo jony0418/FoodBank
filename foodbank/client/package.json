@@ -14,7 +14,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "@chakra-ui/react": "^1.0.0",
+    "framer-motion": "^4.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
