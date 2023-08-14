@@ -1,10 +1,9 @@
 // components/layout/Header.js
 import React from 'react';
 import { Box, Flex, Link, Spacer, Text, useColorMode, IconButton } from '@chakra-ui/react';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 function Header() {
-    const { colorMode, toggleColorMode } = useColorMode();
+    const { toggleColorMode } = useColorMode();
 
     return (
         <Flex as="header" bg="primary" color="white" p={4} align="center" boxShadow="md">
@@ -19,7 +18,6 @@ function Header() {
             </Box>
             <IconButton 
                 ml={4}
-                icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 onClick={toggleColorMode}
                 aria-label="Toggle Color Mode"
             />
