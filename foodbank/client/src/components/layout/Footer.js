@@ -1,7 +1,6 @@
 // components/layout/Footer.js
 import React from 'react';
 import { Box, Flex, Text, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
-import { FaFacebook, FaTwitter, FaInstagram } from '@chakra-ui/icons';  // Example social media icons
 
 function Footer() {
     const bg = useColorModeValue("primary", "gray.800");
@@ -19,18 +18,7 @@ function Footer() {
         >
             <Text>&copy; 2023 Bamx</Text>
             
-            <Flex align="center">
-                <Text mr={4}>Follow us:</Text>
-                <Link href="#" aria-label="Facebook" mx={1}>
-                    <FaFacebook />
-                </Link>
-                <Link href="#" aria-label="Twitter" mx={1}>
-                    <FaTwitter />
-                </Link>
-                <Link href="#" aria-label="Instagram" mx={1}>
-                    <FaInstagram />
-                </Link>
-            </Flex>
+
 
             <Spacer />
 

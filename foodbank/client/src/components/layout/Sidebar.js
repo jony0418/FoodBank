@@ -1,7 +1,6 @@
 // components/layout/Sidebar.js
 import React from 'react';
-import { VStack, Link, Icon, useColorModeValue } from '@chakra-ui/react';
-import { MdDashboard, MdInventory, MdDistribution } from 'react-icons/fa';  // Example icons
+import { VStack, Link, useColorModeValue } from '@chakra-ui/react';
 
 function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
@@ -27,7 +26,6 @@ function Sidebar() {
                 display="flex"
                 alignItems="center"
             >
-                <Icon as={MdDashboard} mr={2} />
                 Dashboard
             </Link>
             <Link 
@@ -39,7 +37,6 @@ function Sidebar() {
                 display="flex"
                 alignItems="center"
             >
-                <Icon as={MdInventory} mr={2} />
                 Inventory Management
             </Link>
             <Link 
@@ -51,7 +48,6 @@ function Sidebar() {
                 display="flex"
                 alignItems="center"
             >
-                <Icon as={MdDistribution} mr={2} />
                 Distribution Management
             </Link>
             {/* ... other sidebar links */}
