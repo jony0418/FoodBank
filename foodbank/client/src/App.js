@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { ChakraProvider, CSSReset, ColorModeScript } from '@chakra-ui/react';
 import theme from './theme';
