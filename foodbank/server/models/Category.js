@@ -6,8 +6,14 @@ const categorySchema = new Schema({
     name: {
         type: String,
         required: true,
-        enum: ['fruits', 'seeds', 'vegetables', 'canned food', 'other']
-    }
+        trim: true
+    }, 
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Product'
+        }
+    ]
 }); 
 
 const Category = mongoose.model('Category', categorySchema); 
