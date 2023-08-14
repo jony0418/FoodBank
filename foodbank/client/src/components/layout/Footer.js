@@ -1,4 +1,3 @@
-// components/layout/Footer.js
 import React from 'react';
 import { Box, Flex, Text, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
 
