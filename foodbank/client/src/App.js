@@ -8,10 +8,7 @@ import Register from "./components/auth/Register";
 import theme from "./theme";
 import Dashboard from "./components/admin/Dashboard";
 
-import Home from "./pages/Home";
-import Matchup from "./pages/Matchup";
-import Vote from "./pages/Vote";
-import Checkout from "./pages/Checkout";
+import BoM from "./pages/DistributionRequest";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -30,10 +27,10 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               {<Route path="/dashboard" element={<Dashboard />} />}
-              <Route path="/matchup" element={<Matchup />} />
-              <Route path="/matchup/:id" element={<Vote />} />
+              {/* {<Route path="/distribution" element={<DistributionManagement />} />} */}
+              <Route path="/BoM" element={<BoM />} />
+
               <Route path="*" element={<h1>Not found</h1>}></Route>
-              <Route path="/checkout" element={<Checkout />} />
             </Routes>
           </div>
         </Router>
