@@ -1,48 +1,55 @@
 import React from 'react'
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
-
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tfoot,
+    Tr,
+    Th,
+    Td,
+    TableCaption,
+    TableContainer,
+  } from '@chakra-ui/react'
+  
 function productlist () {
     return ( 
     <div className='productlist'>
-        <div className='intro'>
-            <h1>placeholder header</h1>
-            <div className='phrase'><p>placeholder phrase</p></div>
-        </div>
-        <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
-  <Card>
-    <CardHeader>
-      <Heading size='md'>Inventory</Heading>
-    </CardHeader>
-    <CardBody>
-      <Text>View all items currently in the inventory.</Text>
-    </CardBody>
-    <CardFooter>
-      <Button>View here</Button>
-    </CardFooter>
-  </Card>
-  <Card>
-    <CardHeader>
-      <Heading size='md'>Name of item</Heading>
-    </CardHeader>
-    <CardBody>
-      <Text>quantity, measuring units, category, description, date</Text>
-    </CardBody>
-    <CardFooter>
-      <Button>View here</Button>
-    </CardFooter>
-  </Card>
-  <Card>
-    <CardHeader>
-      <Heading size='md'>Name of item</Heading>
-    </CardHeader>
-    <CardBody>
-    <Text>quantity, measuring units, category, description, date</Text>
-    </CardBody>
-    <CardFooter>
-      <Button>View here</Button>
-    </CardFooter>
-  </Card>
-</SimpleGrid>
+   <TableContainer>
+  <Table variant='simple'>
+    <TableCaption>Imperial to metric conversion factors</TableCaption>
+    <Thead>
+      <Tr>
+        <Th>To convert</Th>
+        <Th>into</Th>
+        <Th isNumeric>multiply by</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+      <Tr>
+        <Td>inches</Td>
+        <Td>millimetres (mm)</Td>
+        <Td isNumeric>25.4</Td>
+      </Tr>
+      <Tr>
+        <Td>feet</Td>
+        <Td>centimetres (cm)</Td>
+        <Td isNumeric>30.48</Td>
+      </Tr>
+      <Tr>
+        <Td>yards</Td>
+        <Td>metres (m)</Td>
+        <Td isNumeric>0.91444</Td>
+      </Tr>
+    </Tbody>
+    <Tfoot>
+      <Tr>
+        <Th>To convert</Th>
+        <Th>into</Th>
+        <Th isNumeric>multiply by</Th>
+      </Tr>
+    </Tfoot>
+  </Table>
+</TableContainer>
     </div> 
     )
 }
