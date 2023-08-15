@@ -114,11 +114,7 @@ img {
 
 span[role="img"] {
   cursor: default;
-}
-
-form {
-  width: 40%;
-}
+} 
 
 input {
   font-size: 1rem;

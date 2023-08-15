@@ -28,9 +28,9 @@ const typeDefs = gql`
     type Query {
         me: User
         categories: [Category]
-        # products(category: String, name: String): [Product]
+        category(categoryId: ID, name: String): Category
         products: [Product]
-        product(_id: ID, name: String): Product
+        product(productId: ID, name: String): Product
     }
 
   type Mutation {
