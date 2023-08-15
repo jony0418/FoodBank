@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
 
 // Uncomment import statement below after building queries and mutations
 // import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -11,11 +12,10 @@ import Dashboard from './components/admin/Dashboard';
 
 function App() {
   return (
-        <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode="light" />
-        <CSSReset />
-        <Dashboard />
-    <Router>
+  <ChakraProvider theme={theme}>
+    <ColorModeScript initialColorMode="light" />
+    <CSSReset />
+      <Router>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>
           <Route 
@@ -26,14 +26,15 @@ function App() {
             path="/register" 
             element={<Register/>} 
           />
-          {/* <Route 
-            path="/matchup/:id" 
-            element={<Vote />} 
-          /> */}
+          { <Route 
+            path="/dashboard" 
+            element={
+            <Dashboard/>} 
+          />}
         </Routes>
       </div>
     </Router>
-    </ChakraProvider>
+  </ChakraProvider>
   );
 }
 
