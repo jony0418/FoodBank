@@ -1,4 +1,3 @@
-// components/layout/Sidebar.js
 import React from 'react';
 import { VStack, Link, useColorModeValue } from '@chakra-ui/react';
 

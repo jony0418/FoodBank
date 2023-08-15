@@ -1,4 +1,3 @@
-// components/layout/Header.js
 import React from 'react';
 import { Box, Flex, Link, Spacer, Text, useColorMode, IconButton } from '@chakra-ui/react';
 

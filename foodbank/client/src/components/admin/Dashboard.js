@@ -1,4 +1,3 @@
-// components/Dashboard.js
 import React from 'react';
 import { Box, Flex, Stat, StatLabel, StatNumber, StatHelpText, Stack } from '@chakra-ui/react';
 import Header from '../layout/Header';
