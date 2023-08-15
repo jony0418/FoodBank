@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import theme from './theme';
+import Dashboard from './components/admin/Dashboard';
+import ProductList from './pages/productlist'; 
 
 import Home from "./pages/Home";
 import Matchup from "./pages/Matchup";
@@ -32,7 +32,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -44,6 +43,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
+
+              <Route path="/productlist" element={<ProductList />} />
               {<Route path="/dashboard" element={<Dashboard />} />}
               <Route path="/matchup" element={<Matchup />} />
               <Route path="/matchup/:id" element={<Vote />} />
@@ -56,5 +57,4 @@ function App() {
     </ApolloProvider>
   );
 }
-
 export default App;
