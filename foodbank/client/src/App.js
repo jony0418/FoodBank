@@ -1,7 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ChakraProvider, ColorModeScript, CSSReset } from "@chakra-ui/react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -13,8 +14,22 @@ import Matchup from "./pages/Matchup";
 import Vote from "./pages/Vote";
 import Checkout from "./pages/Checkout";
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 const client = new ApolloClient({
-  uri: "/graphql",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
