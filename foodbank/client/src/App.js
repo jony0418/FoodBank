@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Uncomment import statement below after building queries and mutations
-// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -10,14 +9,18 @@ import theme from './theme';
 import Dashboard from './components/admin/Dashboard';
 import productlist from './pages/productlist';
 
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
-        <ChakraProvider theme={theme}>
-            <ColorModeScript initialColorMode="light" />
-            <CSSReset />
-            <Dashboard />
-            <productlist />
-    <Router>
+    <ApolloProvider client={client}>
+  <ChakraProvider theme={theme}>
+    <ColorModeScript initialColorMode="light" />
+    <CSSReset />
+      <Router>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>
           <Route 
@@ -28,14 +31,20 @@ function App() {
             path="/register" 
             element={<Register/>} 
           />
-          {/* <Route 
-            path="/matchup/:id" 
-            element={<Vote />} 
-          /> */}
+           <Route 
+            path="/dashboard" 
+            element={
+            <Dashboard/>} 
+          />
+             <Route 
+            path="/productlist" 
+            element={<productlist/>} 
+            />
         </Routes>
       </div>
     </Router>
-    </ChakraProvider>
+  </ChakraProvider>
+  </ApolloProvider>
   );
 }
 
