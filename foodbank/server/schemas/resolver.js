@@ -13,9 +13,6 @@ const resolvers = {
         },
         categories: async () => {
             return Category.find(); 
-        },
-        login: async (parent, arg, context) => {
-            return User.findOne({email: context.user.email , password: context.user.password}); 
         }
     },
 

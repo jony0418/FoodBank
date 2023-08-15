@@ -9,3 +9,13 @@ export const addUser = gql`
   }
 }
 `;
+
+export const UserLogin = gql`
+mutation Mutation($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    user {
+      username
+    }
+  }
+}
+`;
