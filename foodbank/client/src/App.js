@@ -15,8 +15,6 @@ function App() {
         <ColorModeScript initialColorMode="light" />
         <CSSReset />
         <Dashboard />
-    </ChakraProvider>
-    );
     <Router>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>
@@ -35,6 +33,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ChakraProvider>
   );
 }
 
