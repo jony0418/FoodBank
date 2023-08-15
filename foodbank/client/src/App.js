@@ -6,9 +6,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import theme from './theme';
+import Dashboard from './components/admin/Dashboard';
 
 function App() {
   return (
+        <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode="light" />
+        <CSSReset />
+        <Dashboard />
+    </ChakraProvider>
+    );
     <Router>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
         <Routes>

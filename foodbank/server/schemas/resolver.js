@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express'); 
-const { User } = require('../models'); 
+const { User, Category, Product } = require('../models'); 
 const { signToken } = require('../utils/auth'); 
 
 const resolvers = {
@@ -11,6 +11,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!'); 
         },
+        categories: async () => {
+            return Category.find(); 
+        }
     },
 
     Mutation: {
@@ -32,7 +35,31 @@ const resolvers = {
             const token = signToken(user); 
             return { token, user }; 
         },
-    }
-}
+        addProduct: async (parent, { name, description, quantity, categoryId}) => {
+            
+            const category = await Category.findById(categoryId); 
+            
+            if (!category) {
+                throw new Error('Category not found'); 
+            }
+
+            const product = await Product.create({
+                name,
+                description,
+                quantity,
+                category: categoryId,
+            }); 
+
+            category.products.push(product._id); 
+            await category.save();
+            return product 
+
+        },
+        addCategory: async (parent, { name }) => {
+            const category = await Category.create({ name }); 
+            return category; 
+        },
+    },
+}; 
 
 module.exports = resolvers; 
