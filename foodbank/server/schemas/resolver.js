@@ -11,6 +11,9 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!'); 
         },
+        products: async () => {
+            return Product.find(); 
+        },
         categories: async () => {
             return Category.find(); 
         }
@@ -59,6 +62,16 @@ const resolvers = {
             const category = await Category.create({ name }); 
             return category; 
         },
+        updateProduct: async (parent, { id, name }) => {
+            return await Product.findOneAndUpdate(
+                { _id: id },
+                { name },
+                { new: true }
+            )
+        },
+        deleteProduct: async (parent, { id }) => {
+            return await Product.findOneAndDelete({ _id: id } )
+        }
     },
 }; 
 
