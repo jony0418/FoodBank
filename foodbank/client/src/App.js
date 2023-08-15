@@ -1,42 +1,19 @@
+// App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import * as React from 'react';
-
-
-import Home from './pages/Home';
-import Matchup from './pages/Matchup';
-import Vote from './pages/Vote';
-
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-})
+import { ChakraProvider, CSSReset, ColorModeScript } from '@chakra-ui/react';
+import theme from './theme';
+import Dashboard from './components/admin/Dashboard';
+import productlist from './pages/productlist';
 
 function App() {
-  return (
-    <ApolloProvider client={client}> 
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Routes>
-            <Route 
-              path="/" 
-              element={<Home />} 
-            />
-            <Route 
-              path="/matchup" 
-              element={<Matchup />} 
-            />
-            <Route 
-              path="/matchup/:id" 
-              element={<Vote />} 
-            />
-          </Routes>
-        </div>
-      </Router>
-    </ApolloProvider>
-  );
+    return (
+        <ChakraProvider theme={theme}>
+            <ColorModeScript initialColorMode="light" />
+            <CSSReset />
+            <Dashboard />
+            <productlist />
+        </ChakraProvider>
+    );
 }
 
 export default App;
-
