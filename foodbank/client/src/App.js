@@ -1,16 +1,41 @@
 import React from 'react';
-import { ChakraProvider, CSSReset, ColorModeScript } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Uncomment import statement below after building queries and mutations
+// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import theme from './theme';
 import Dashboard from './components/admin/Dashboard';
 
 function App() {
-    return (
+  return (
         <ChakraProvider theme={theme}>
-            <ColorModeScript initialColorMode="light" />
-            <CSSReset />
-            <Dashboard />
-        </ChakraProvider>
+        <ColorModeScript initialColorMode="light" />
+        <CSSReset />
+        <Dashboard />
+    </ChakraProvider>
     );
+    <Router>
+      <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <Routes>
+          <Route 
+            path="/" 
+            element={<Login/>} 
+          />
+          <Route 
+            path="/register" 
+            element={<Register/>} 
+          />
+          {/* <Route 
+            path="/matchup/:id" 
+            element={<Vote />} 
+          /> */}
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
