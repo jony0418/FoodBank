@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Wrap, WrapItem, Center, Image, Text } from "@chakra-ui/react";
 import logo from "../../assets/girl-apples.png";
 
-export default class Header extends Component {
+export default class Banner extends Component {
   render() {
     return (
       <Wrap justify="center">
