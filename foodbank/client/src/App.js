@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import {createHttpLink} from '@apollo/client';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import theme from './theme';
