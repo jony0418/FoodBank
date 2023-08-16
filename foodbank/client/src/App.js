@@ -8,12 +8,6 @@ import Register from './components/auth/Register';
 import theme from './theme';
 import Dashboard from './components/admin/Dashboard';
 import ProductList from './pages/productlist'; 
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
-import BoM from "./pages/DistributionRequest";
-
 
 // import Home from "./pages/Home";
 // import Matchup from "./pages/Matchup";
@@ -50,6 +44,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/productlist" element={<ProductList />} />
               {/* <Route path="/matchup" element={<Matchup />} />
               <Route path="/matchup/:id" element={<Vote />} /> */}
               <Route path="*" element={<h1>Not found</h1>}></Route>
