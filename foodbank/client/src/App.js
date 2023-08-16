@@ -1,18 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react'
-import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import theme from './theme';
+import Dashboard from './components/admin/Dashboard';
+import ProductList from './pages/productlist'; 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import theme from "./theme";
 import Dashboard from "./components/admin/Dashboard";
+import BoM from "./pages/DistributionRequest";
 
-import Home from "./pages/Home";
-import Matchup from "./pages/Matchup";
-import Vote from "./pages/Vote";
-import Checkout from "./pages/Checkout";
+
+// import Home from "./pages/Home";
+// import Matchup from "./pages/Matchup";
+// import Vote from "./pages/Vote";
+// import Checkout from "./pages/Checkout";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -44,11 +50,11 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/productlist" element={<ProductList />} />
-              <Route path="/matchup" element={<Matchup />} />
-              <Route path="/matchup/:id" element={<Vote />} />
+              {/* <Route path="/matchup" element={<Matchup />} />
+              <Route path="/matchup/:id" element={<Vote />} /> */}
               <Route path="*" element={<h1>Not found</h1>}></Route>
-              <Route path="/checkout" element={<Checkout />} />
+              {/* <Route path="/checkout" element={<Checkout />} /> */}
+
             </Routes>
           </div>
         </Router>

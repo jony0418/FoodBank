@@ -1,6 +1,7 @@
 'use client'
 
 import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text, useColorModeValue, Link, } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import { useState } from 'react';
 // import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useMutation, useQuery } from '@apollo/client';
@@ -76,8 +77,7 @@ export default function SignupCard() {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}>
-          <form onSubmit={handleFormSubmit}
-          >
+          <form onSubmit={handleFormSubmit}>
             <HStack>
               <Box>
                 <FormControl id="userName" isRequired>
@@ -127,7 +127,7 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <Link color={'blue.400'} as={ReactRouterLink} to='/'>Login</Link>
               </Text>
             </Stack>
           </form>

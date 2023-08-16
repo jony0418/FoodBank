@@ -28,19 +28,19 @@ function productlist () {
     </Thead>
     <Tbody>
       <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td>25.4</Td>
+        <Td>placeholder </Td>
+        <Td>placeholder </Td>
+        <Td>placeholder</Td>
       </Tr>
       <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td>30.48</Td>
+        <Td>placeholder</Td>
+        <Td>placeholder</Td>
+        <Td>placeholder</Td>
       </Tr>
       <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td>0.91444</Td>
+        <Td>placeholder</Td>
+        <Td>placeholder</Td>
+        <Td>placeholder</Td>
       </Tr>
     </Tbody>
   </Table>
