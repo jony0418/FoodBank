@@ -18,7 +18,8 @@ function productlist () {
     <TableCaption>Inventory</TableCaption>
     <Thead>
       <Tr>
-        <Th>Name</Th>
+        <Th>Description</Th>
+        <Th>Id</Th>
         <Th>Quantity</Th>
         {/* <Th isNumeric> */}
         <Th>Measuring unit</Th>
