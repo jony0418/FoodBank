@@ -1,5 +1,8 @@
 import React from 'react'
+import { Stack, InputGroup, Input, InputLeftAddon } from '@chakra-ui/react';
 
+function AddItem () {
+    return ( 
 <Stack spacing={4}>
   <InputGroup>
     <InputLeftAddon children='id' />
@@ -29,5 +32,7 @@ import React from 'react'
   </InputGroup>
 
 </Stack>
+    )}
 
-export default additem;
+
+export default AddItem;
