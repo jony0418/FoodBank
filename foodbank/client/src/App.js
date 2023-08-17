@@ -2,11 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import theme from './theme';
-import Dashboard from './components/admin/Dashboard';
 import ProductList from './pages/productlist'; 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -38,6 +35,7 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
 function App() {
   return (
     <ApolloProvider client={client}>
