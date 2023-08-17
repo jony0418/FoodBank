@@ -1,43 +1,68 @@
 'use client'
 
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image, Box, Link } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
-import { useState } from 'react';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { UserLogin } from '../utils/mutations';
 import Auth from '../utils/auth';
+import Dashboard from '../admin/Dashboard';
 
 const Login = (props) => {
     const [userState, setuserState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(UserLogin);
+
+    //const navigate = useNavigate();
   
     const handleChange = (event) => {
       const { name, value } = event.target;
-  
-      setuserState({
-        ...userState,
-        [name]: value,
-      });
-    };
-  
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
-      console.log(userState);
-      try {
-        const { data } = await login({
-          variables: { ...userState },
-        });
-  
-        Auth.login(data.login.token);
-      } catch (e) {
-        console.error(e);
+      switch (name) {
+        case "email":
+          setuserState({ ...userState, [name]: value });
+          break;
+        case "password":
+          setuserState({ ...userState, [name]: value });
+          break;
+        default:
+          break;
       }
-  
-      setuserState({
-        email: '',
-        password: '',
-      });
     };
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          const mutationResponse = await login({
+            variables: { email: userState.email, password: userState.password },
+          });
+          const token = mutationResponse.data.login.token;
+            Auth.login(token);
+            //navigate('/dashboard');
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+    
+    // const handleFormSubmit = async (event) => {
+    //   event.preventDefault();
+    //   console.log(userState);
+    //   try {
+    //     const { data } = await login({
+    //       variables: { ...userState },
+    //     });
+  
+    //     Auth.login(data.login.token);
+    //     navigate('/dashboard');
+    //     //window.location.href = '/dashboard';
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+  
+    //   setuserState({
+    //     email: '',
+    //     password: '',
+    //   });
+    // };
 
 
 //export default function SplitScreen() {
@@ -46,6 +71,9 @@ const Login = (props) => {
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
           <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+          {data ? (    
+                <Link to="/dashboard">Login</Link>
+            ) : (
           <form onSubmit={handleFormSubmit}>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
@@ -69,11 +97,12 @@ const Login = (props) => {
               <Checkbox>Remember me</Checkbox>
               <Text color={'blue.500'}>Forgot password?</Text>
             </Stack>
-            <Button colorScheme={'blue'} variant={'solid'}>
+            <Button colorScheme={'blue'} variant={'solid'} type="submit">
               Sign in
             </Button>
           </Stack>
           </form>
+             )};
           <Box>
             New to us?{" "}
             <Link color="teal.500" href="#" as={ReactRouterLink} to='/register'>

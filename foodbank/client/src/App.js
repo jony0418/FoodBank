@@ -8,13 +8,9 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import theme from './theme';
 import Dashboard from './components/admin/Dashboard';
+import BoM from "./pages/DistributionRequest";
 import ProductList from './pages/productlist'; 
 import AddItem from './pages/additem';
-
-// import Home from "./pages/Home";
-// import Matchup from "./pages/Matchup";
-// import Vote from "./pages/Vote";
-// import Checkout from "./pages/Checkout";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
