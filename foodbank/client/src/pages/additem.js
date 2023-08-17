@@ -2,16 +2,32 @@ import React from 'react'
 
 <Stack spacing={4}>
   <InputGroup>
-    <InputLeftAddon children='+234' />
-    <Input type='tel' placeholder='phone number' />
+    <InputLeftAddon children='id' />
+    <Input placeholder='item id' />
   </InputGroup>
 
   {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
-  <InputGroup size='sm'>
-    <InputLeftAddon children='https://' />
-    <Input placeholder='mysite' />
-    <InputRightAddon children='.com' />
+
+  <InputGroup>
+    <InputLeftAddon children='name' />
+    <Input placeholder='item name' />
   </InputGroup>
+
+  <InputGroup>
+    <InputLeftAddon children='measuring units' />
+    <Input placeholder='pieces/kg/etc' />
+  </InputGroup>
+
+  <InputGroup>
+    <InputLeftAddon children='category' />
+    <Input placeholder='fruit/legume/etc' />
+  </InputGroup>
+
+  <InputGroup>
+    <InputLeftAddon children='family' />
+    <Input placeholder='???' />
+  </InputGroup>
+
 </Stack>
 
 export default additem;
