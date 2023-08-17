@@ -29,19 +29,28 @@ function productlist () {
     </Thead>
     <Tbody>
       <Tr>
-        <Td>placeholder </Td>
-        <Td>placeholder </Td>
-        <Td>placeholder</Td>
+        <Td>Apple </Td>
+        <Td>IdNumber </Td>
+        <Td>3</Td>
+        <Td>Pieces</Td>
+        <Td>Fruit</Td>
+        <Td>8</Td>
       </Tr>
       <Tr>
-        <Td>placeholder</Td>
-        <Td>placeholder</Td>
-        <Td>placeholder</Td>
+        <Td>Rice</Td>
+        <Td>IdNumber</Td>
+        <Td>7</Td>
+        <Td>Pieces</Td>
+        <Td>Legumes</Td>
+        <Td>10</Td>
       </Tr>
       <Tr>
-        <Td>placeholder</Td>
-        <Td>placeholder</Td>
-        <Td>placeholder</Td>
+        <Td>Canned beans</Td>
+        <Td>IdNumber</Td>
+        <Td>13</Td>
+        <Td>Pieces</Td>
+        <Td>Legumes</Td>
+        <Td>9</Td>
       </Tr>
     </Tbody>
   </Table>
