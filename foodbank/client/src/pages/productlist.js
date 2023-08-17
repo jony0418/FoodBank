@@ -10,7 +10,7 @@ import {
     TableContainer,
   } from '@chakra-ui/react'
   
-function productlist () {
+function ProductList () {
     return ( 
     <div className='productlist'>
    <TableContainer>
@@ -59,4 +59,4 @@ function productlist () {
     )
 }
 
-export default productlist;
+export default ProductList;
