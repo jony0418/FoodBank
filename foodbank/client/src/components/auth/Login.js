@@ -83,7 +83,7 @@ const Login = (props) => {
                     onChange={handleChange}/>
           </FormControl>
           <FormControl id="password">
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Password</FormLabel> 
             <Input type="password" 
                     name="password"
                     value={userState.password}
