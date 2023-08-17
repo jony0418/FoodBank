@@ -68,10 +68,9 @@ const resolvers = {
             return product 
 
         },
-        updateProduct: async (parent, { id, name }) => {
-            return await Product.findOneAndUpdate(
-                { _id: id },
-                { name },
+        updateProduct: async (parent, { id, quantity }) => {
+            return await Product.findByIdAndUpdate(id,
+                { quantity },
                 { new: true }
             )
         },
