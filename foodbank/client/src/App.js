@@ -52,7 +52,6 @@ function App() {
               <Route path="/matchup/:id" element={<Vote />} /> */}
               <Route path="*" element={<h1>Not found</h1>}></Route>
               {/* <Route path="/checkout" element={<Checkout />} /> */}
-
             </Routes>
           </div>
         </Router>
@@ -60,4 +59,7 @@ function App() {
     </ApolloProvider>
   );
 }
+
 export default App;
+
+
