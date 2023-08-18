@@ -1,7 +1,14 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ChakraProvider, ColorModeScript, CSSReset } from "@chakra-ui/react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import ProductList from './pages/productlist'; 
+import BoM from "./pages/DistributionRequest";
+import AddItem from './pages/additem';
+import ModifyItem from './pages/modifyitem';
+
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -10,8 +17,23 @@ import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 import DistributionReport from "./pages/DistributionReportPage";
 
+//const httpLink = createHttpLink({
+//  uri: '/graphql',
+//});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+
 const client = new ApolloClient({
-  uri: "/graphql",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -26,7 +48,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {<Route path="/dashboard" element={<Dashboard />} />}
               {/* {<Route path="/distribution" element={<DistributionManagement />} />} */}
               <Route path="/BoM" element={<BoM />} />
               <Route
@@ -34,7 +55,16 @@ function App() {
                 element={<DistributionReport />}
               />
 
+
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/productlist" element={<ProductList />} />
+              <Route path="/additem" element={<AddItem />} />
+              <Route path="/modifyitem" element={<ModifyItem />} />
+              {/* <Route path="/matchup" element={<Matchup />} />
+              <Route path="/matchup/:id" element={<Vote />} /> */}
+
               <Route path="*" element={<h1>Not found</h1>}></Route>
+              {/* <Route path="/checkout" element={<Checkout />} /> */}
             </Routes>
           </div>
         </Router>
@@ -42,5 +72,4 @@ function App() {
     </ApolloProvider>
   );
 }
-
 export default App;
