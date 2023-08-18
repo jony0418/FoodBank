@@ -9,6 +9,14 @@ import BoM from "./pages/DistributionRequest";
 import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
 
+
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import theme from "./theme";
+import Dashboard from "./components/admin/Dashboard";
+import BoM from "./pages/DistributionRequest";
+import DistributionReport from "./pages/DistributionReportPage";
+
 //const httpLink = createHttpLink({
 //  uri: '/graphql',
 //});
@@ -22,6 +30,7 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -39,12 +48,21 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              {/* {<Route path="/distribution" element={<DistributionManagement />} />} */}
+              <Route path="/BoM" element={<BoM />} />
+              <Route
+                path="/distributionreport"
+                element={<DistributionReport />}
+              />
+
+
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem" element={<ModifyItem />} />
               {/* <Route path="/matchup" element={<Matchup />} />
               <Route path="/matchup/:id" element={<Vote />} /> */}
+
               <Route path="*" element={<h1>Not found</h1>}></Route>
               {/* <Route path="/checkout" element={<Checkout />} /> */}
             </Routes>
