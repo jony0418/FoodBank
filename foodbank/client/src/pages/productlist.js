@@ -6,7 +6,6 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Button,
   Flex,
@@ -22,12 +21,11 @@ function ProductList() {
         <Table variant='simple'>
           <Thead>
             <Tr>
+              <Th>Name</Th>
               <Th>Description</Th>
-              <Th>Id</Th>
+              <Th>Image</Th>
               <Th>Quantity</Th>
-              <Th>Measuring unit</Th>
               <Th>Category</Th>
-              <Th>Family</Th>
               <Th>Modify Item</Th>
               <Th>Delete Item</Th> {/* New column */}
             </Tr>
@@ -35,11 +33,10 @@ function ProductList() {
           <Tbody>
             <Tr>
               <Td>Apple</Td>
-              <Td>IdNumber</Td>
-              <Td>3</Td>
-              <Td>Pieces</Td>
+              <Td>Green apples</Td>
+              <Td>Image here</Td>
+              <Td>10</Td>
               <Td>Fruit</Td>
-              <Td>8</Td>
               <Td>
                 <Link to='/modifyitem'>Modify</Link>
               </Td>
@@ -48,11 +45,10 @@ function ProductList() {
             </Tr>
             <Tr>
             <Td>Rice</Td>
-            <Td>IdNumber</Td>
+            <Td>Brown rice</Td>
+            <Td>Image here</Td>
             <Td>7</Td>
-            <Td>Pieces</Td>
             <Td>Legumes</Td>
-            <Td>10</Td>
             <Td>
                 <Link to='/modifyitem'>Modify</Link>
               </Td>
@@ -61,11 +57,10 @@ function ProductList() {
             </Tr>
             <Tr>
             <Td>Canned beans</Td>
-            <Td>IdNumber</Td>
-            <Td>13</Td>
-            <Td>Pieces</Td>
+            <Td>Pinto beans in a can</Td>
+            <Td>Image here</Td>
+            <Td>10</Td>
             <Td>Legumes</Td>
-            <Td>9</Td>
               <Td>
                 <Link to='/modifyitem'>Modify</Link>
               </Td>
