@@ -1,5 +1,6 @@
 import React from 'react';
 import { VStack, Link, useColorModeValue } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
@@ -35,6 +36,7 @@ function Sidebar() {
                 w="100%"
                 display="flex"
                 alignItems="center"
+                //as={ReactRouterLink} to='/register'
             >
                 Inventory Management
             </Link>
