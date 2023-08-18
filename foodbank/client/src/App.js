@@ -16,9 +16,9 @@ import BoM from "./pages/DistributionRequest";
 // import Vote from "./pages/Vote";
 // import Checkout from "./pages/Checkout";
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
+//const httpLink = createHttpLink({
+//  uri: '/graphql',
+//});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
