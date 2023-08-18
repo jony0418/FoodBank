@@ -14,6 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 
+
 function ProductList() {
   return (
     <div className='productlist'>

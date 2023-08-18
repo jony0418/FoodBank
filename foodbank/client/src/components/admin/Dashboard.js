@@ -4,15 +4,21 @@ import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 import { useNavigate } from 'react-router-dom';
-import Auth from '../utils/auth'; 
+import Auth from '../utils/auth';
+import Login from '../auth/Login';
+import { useEffect } from 'react';
 
 function Dashboard() {
     const navigate = useNavigate();
-    
-    if (!Auth.loggedIn()) {
-        navigate('/'); 
-        return null; 
-    }
+    console.log(Auth.loggedIn());  
+
+    useEffect(() => {
+        if (!Auth.loggedIn()) {
+            console.log('error');
+            navigate('/')
+            // navigate('/register'); 
+        }
+    }); 
 
     return (
         <Flex direction="column" minHeight="100vh">
