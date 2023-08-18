@@ -1,10 +1,11 @@
 import Header from "../components/layout/Header";
-import FormDistribution from "../components/distribution/FormDistribition";
+// import DistributionReport from "../components/distribution/DistributionReport";
 import Footer from "../components/layout/Footer";
 import Sidebar from "../components/layout/Sidebar";
 import { Flex, Box } from "@chakra-ui/react";
+import DistributionReport from "../hooks/DistributionReportH";
 
-function DistributionRequest() {
+function ReportDistPage() {
   return (
     <>
       <Header />
@@ -13,7 +14,7 @@ function DistributionRequest() {
           <Sidebar />
         </Box>
         <Box flex="1" padding={4}>
-          <FormDistribution />
+          <DistributionReport />
         </Box>
       </Flex>
       <Footer />
@@ -21,4 +22,4 @@ function DistributionRequest() {
   );
 }
 
-export default DistributionRequest;
+export default ReportDistPage;

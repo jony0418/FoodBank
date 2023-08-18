@@ -8,12 +8,16 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Heading,
 } from "@chakra-ui/react";
 
-export default class Banner extends Component {
+export default class FormDistribition extends Component {
   render() {
     return (
       <FormControl isRequired>
+        <Heading as="h1" size="l">
+          Distribution Form
+        </Heading>
         <FormLabel padding={1}>Item</FormLabel>
         <Select padding={1} placeholder="Select Item">
           <option>Can Corn</option>
