@@ -1,7 +1,7 @@
 import Header from "../components/layout/Header";
 import FormDistribution from "../components/distribution/FormDistribition";
 import Footer from "../components/layout/Footer";
-import Sidebar from "../components/layout/Sidebar-copy";
+import Sidebar from "../components/layout/Sidebar";
 import { Grid, Flex, Square, Box, Text } from "@chakra-ui/react";
 
 function Matchup() {
