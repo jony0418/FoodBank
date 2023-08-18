@@ -19,7 +19,6 @@ function ProductList() {
     <div className='productlist'>
       <TableContainer>
         <Table variant='simple'>
-          <TableCaption>Inventory</TableCaption>
           <Thead>
             <Tr>
               <Th>Description</Th>
