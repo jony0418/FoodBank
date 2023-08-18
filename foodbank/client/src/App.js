@@ -5,10 +5,6 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import ProductList from './pages/productlist'; 
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 
 
@@ -17,9 +13,9 @@ import BoM from "./pages/DistributionRequest";
 // import Vote from "./pages/Vote";
 // import Checkout from "./pages/Checkout";
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
+//const httpLink = createHttpLink({
+//  uri: '/graphql',
+//});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
