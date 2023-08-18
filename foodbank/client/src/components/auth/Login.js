@@ -47,13 +47,6 @@ const Login = (props) => {
         <Stack spacing={4} w={'full'} maxW={'md'}>
         <Image src='../../images/logo.png' alt="logo" />
           <Heading fontSize={'2xl'}>Sign in to your account</Heading>
-           {data ? (    
-            <p>
-            Success! You may now head{' '}
-                <Link to='/dashboard'>Login</Link>
-            </p>
-            ) : (
- 
           <form onSubmit={handleFormSubmit}>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
@@ -106,6 +99,6 @@ const Login = (props) => {
       </Flex>
     </Stack>
   )
-};
+}
 
 export default Login;
