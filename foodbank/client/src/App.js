@@ -8,7 +8,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import theme from './theme';
 import Dashboard from './components/admin/Dashboard';
-import BoM from "./pages/DistributionRequest";
+// import BoM from "./pages/DistributionRequest";
 import ProductList from './pages/productlist'; 
 import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
