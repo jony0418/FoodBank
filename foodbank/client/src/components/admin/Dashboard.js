@@ -5,6 +5,7 @@ import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
+import Login from '../auth/Login';
 import { useEffect } from 'react';
 
 function Dashboard() {
@@ -17,7 +18,9 @@ function Dashboard() {
             navigate('/')
             // navigate('/register'); 
         }
+
     });  
+
 
     return (
         <Flex direction="column" minHeight="100vh">
