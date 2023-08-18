@@ -10,12 +10,8 @@ import Register from "./components/auth/Register";
 import theme from "./theme";
 import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
-
-
-// import Home from "./pages/Home";
-// import Matchup from "./pages/Matchup";
-// import Vote from "./pages/Vote";
-// import Checkout from "./pages/Checkout";
+import AddItem from './pages/additem';
+import ModifyItem from './pages/modifyitem';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -48,6 +44,9 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/productlist" element={<ProductList />} />
+              <Route path="/additem" element={<AddItem />} />
+              <Route path="/modifyitem" element={<ModifyItem />} />
               {/* <Route path="/matchup" element={<Matchup />} />
               <Route path="/matchup/:id" element={<Vote />} /> */}
               <Route path="*" element={<h1>Not found</h1>}></Route>
