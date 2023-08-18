@@ -21,8 +21,7 @@ function Header() {
             </Box>
             <Spacer />
             <Box>
-                <Link mx={2} href="/" color="tertiary">Home</Link>
-                <Link mx={2} href="/about" color="quaternary">About</Link>
+                <Link mx={2} href="/" color="quaternary">Home</Link>
                 {/* ... other navigation links */}
                 {Auth.loggedIn() && (
                     <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
