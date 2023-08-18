@@ -1,18 +1,17 @@
 'use client'
 
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image, Box, Link } from '@chakra-ui/react';
-import { Link as ReactRouterLink} from 'react-router-dom';
+ import { Link as ReactRouterLink} from 'react-router-dom';
 import { useState} from 'react';
 import { useMutation } from '@apollo/client';
 import { UserLogin } from '../utils/mutations';
 import Auth from '../utils/auth';
-
+ 
 
 const Login = (props) => {
     const [userState, setuserState] = useState({ email: '', password: '' });
     const [login, { error, data }] = useMutation(UserLogin);
-
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
   
     const handleChange = (event) => {
       const { name, value } = event.target;
@@ -30,54 +29,31 @@ const Login = (props) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        console.log(userState); 
         try {
-          const mutationResponse = await login({
-            variables: { email: userState.email, password: userState.password },
+          const { data } = await login({
+            variables: { ...userState },
           });
-          const token = mutationResponse.data.login.token;
-            Auth.login(token);
-            //navigate('/dashboard');
+            Auth.login(data.login.token);
+            navigate('/dashboard');
         } catch (e) {
           console.log(e);
         }
       };
 
-    
-    // const handleFormSubmit = async (event) => {
-    //   event.preventDefault();
-    //   console.log(userState);
-    //   try {
-    //     const { data } = await login({
-    //       variables: { ...userState },
-    //     });
-  
-    //     Auth.login(data.login.token);
-    //     navigate('/dashboard');
-    //     //window.location.href = '/dashboard';
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-  
-    //   setuserState({
-    //     email: '',
-    //     password: '',
-    //   });
-    // };
-
-
-//export default function SplitScreen() {
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
         <Image src='../../images/logo.png' alt="logo" />
           <Heading fontSize={'2xl'}>Sign in to your account</Heading>
-          {data ? (    
+           {data ? (    
             <p>
             Success! You may now head{' '}
                 <Link to='/dashboard'>Login</Link>
             </p>
             ) : (
+ 
           <form onSubmit={handleFormSubmit}>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
@@ -87,7 +63,7 @@ const Login = (props) => {
                     onChange={handleChange}/>
           </FormControl>
           <FormControl id="password">
-            <FormLabel>Password</FormLabel>
+            <FormLabel>Password</FormLabel> 
             <Input type="password" 
                     name="password"
                     value={userState.password}
@@ -106,7 +82,11 @@ const Login = (props) => {
             </Button>
           </Stack>
           </form>
-             )};
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
           <Box>
             New to us?{" "}
             <Link color="blue.500" href="#" as={ReactRouterLink} to='/register'>
@@ -126,7 +106,6 @@ const Login = (props) => {
       </Flex>
     </Stack>
   )
-//}
 };
 
 export default Login;

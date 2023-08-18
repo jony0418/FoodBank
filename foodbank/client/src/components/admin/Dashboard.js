@@ -3,8 +3,17 @@ import { Box, Flex, Stat, StatLabel, StatNumber, StatHelpText, Stack } from '@ch
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
+import { useNavigate } from 'react-router-dom';
+import Auth from '../utils/auth'; 
 
 function Dashboard() {
+    const navigate = useNavigate();
+    
+    if (!Auth.loggedIn()) {
+        navigate('/'); 
+        return null; 
+    }
+
     return (
         <Flex direction="column" minHeight="100vh">
             <Header />

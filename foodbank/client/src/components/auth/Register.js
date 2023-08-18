@@ -1,7 +1,7 @@
 'use client'
 
 import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text, useColorModeValue, Link, } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 // import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useMutation} from '@apollo/client';
@@ -10,6 +10,7 @@ import { addUser } from '../utils/mutations';
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate(); 
 
   const [newUser, { error }] = useMutation(addUser);
   const [userState, setuserState] = useState({
@@ -26,8 +27,7 @@ export default function SignupCard() {
       const { data } = await newUser({
         variables: { ...userState },
       });
-
-      window.location.reload();
+      navigate('/'); 
     } catch (err) {
       console.error(err);
     }
