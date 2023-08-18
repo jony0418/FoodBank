@@ -12,6 +12,8 @@ import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
+import PrivacyPolicy from './components/admin/PrivacyPolicy';
+import TermsOfService from './components/admin/TermsOfService'; 
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -47,10 +49,9 @@ function App() {
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem" element={<ModifyItem />} />
-              {/* <Route path="/matchup" element={<Matchup />} />
-              <Route path="/matchup/:id" element={<Vote />} /> */}
+              <Route path="/privacy" element={<PrivacyPolicy />}/>
+              <Route path="/terms" element={<TermsOfService />}/>
               <Route path="*" element={<h1>Not found</h1>}></Route>
-              {/* <Route path="/checkout" element={<Checkout />} /> */}
             </Routes>
           </div>
         </Router>
