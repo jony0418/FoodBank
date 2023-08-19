@@ -36,7 +36,7 @@ connection.once('open', async () => {
         await Transaction.deleteMany();
 
         const createdProducts = await Product.create(mockProducts);
-        console.log(createdProducts);
+
         const batch1 = [
             { ...createdProducts[1], quantity: 6 },
             { ...createdProducts[2], quantity: 4 },
@@ -51,9 +51,12 @@ connection.once('open', async () => {
             { ...mockTransactions[0], product: batch1 },
             { ...mockTransactions[1], product: batch2 }
         ]);
-        console.log(transactions);
-        await restoreTransaction();
-        
+        console.log('mock1');
+        console.log(transactions[0].product);
+        console.log('mock2');
+        console.log(transactions[1].product);
+        await restoreTransaction();// -4 6 -4 12 12
+
         console.log('Database seeded with mock data.');
     } catch (error) {
         console.error('Error seeding database:', error);
