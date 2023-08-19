@@ -10,6 +10,8 @@ FoodBank is an idea created as a tool to help the most vulnerable in our communi
 
 Using React, mongoDB, Chakra UI and the skills of a multitalented team we have created FoodBank.
 
+<img src="foodbank/client/src/assets/girl-apples.png" style="height: 30vh; margin-left: auto; margin-right: auto;" />
+
 ## 📄 Table Content
 
 - [Important Links](#important-links)
@@ -84,6 +86,14 @@ If you have any questions you may contact any of the contributing members.
 ## 👩🏻‍💻👨🏻‍💻Credits
 
 This proyect was created by:
+
+- [Rodrigo Roldan: @](https://github.com/RodrigoRoL);
+- [Gerardo Garcia-Salas @ ](https://github.com/SalasGS94);
+- [Santiago Valenzuela @](https://github.com/santis1001);
+- [Jose Maria Hernandez @ ](https://github.com/ChemaKing13);
+- [Isabella Ruiz @](https://github.com/isanator2000)
+- [Jonathan Becerra @ ](https://github.com/jony0418);
+- [Andrea Ceron: @](https://github.com/aceron2205)
 
 ## License
 
