@@ -20,7 +20,7 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 - [Test Instructions](#tests-instructions)
 - [Questions](#questions)
 
-## Important Links
+## ‼️ Important Links
 
 - [Github Repository]()
 - [Walkthrough Video]()
@@ -45,45 +45,50 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 </br>
 
-## Installation
+## 🛠️ Installation
 
 To successfully install this proyect follow the guideline:
 
-    1. Clone the repository:
-    ```
-    https://github.com/jony0418/FoodBank.git
-    ```
-    2. Install your backend and frontend dependencies
-    ```
-    npm i
-    ```
+1. Clone the repository:
 
-## Usage
+   `https://github.com/jony0418/FoodBank.git`
+
+2. Install your backend and frontend dependencies
+
+   `npm i`
+
+## 📈 Usage
+
+To begin using this application follow the next steps:
 
 1. Start your backend server:
 
-````
-cd backend
-npm start
-```
+   `cd backend`
+
+   `npm start`
 
 2. Start the frontend application
-```
-cd client
-npm start
-```
 
-## Contribution Guidelines
+   `cd client`
+
+   `npm start`
 
 ## Tests Instructions
 
 Not Applicable
 
-## Questions
+## ❓ Questions
 
-## Credits
+If you have any questions you may contact any of the contributing members.
+
+## 👩🏻‍💻👨🏻‍💻Credits
+
+This proyect was created by:
 
 ## License
 
 This application is covered under the MIT License. For more info, click here: [License: MIT](https://opensource.org/licenses/MIT)
-````
+
+```
+
+```
