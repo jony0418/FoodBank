@@ -28,28 +28,22 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 ## Installation
 
+--
 </br>
 
 <div style="display: inline_block">
 
-[![JavaScript](foodbank/client/public/images/javascript.svg)
-&nbsp;&nbsp;
-![NodeJS](foodbank/client/public/images/node.png) //listo
-&nbsp;&nbsp;
-![ExpressJS](foodbank/client/public/images/express.png) //listo
-&nbsp;&nbsp;
-![MongoDB](foodbank/client/public/images/mongodb.png) //listo
-&nbsp;&nbsp;
-![GraphQL](foodbank/client/public/images/graphql.svg.png)
-&nbsp;&nbsp;
-![React](foodbank/client/public/images/react.png)
-&nbsp;&nbsp;
-![Chakra UI](foodbank/client/public/images/chakraui.png)
-&nbsp;&nbsp;
+<img src="foodbank/client/public/images/javascript.svg" style="height: 15vh;" />
+<img src="foodbank/client/public/images/mongodb.svg" style="height: 15vh; />
+<img src="foodbank/client/public/images/node-js.webp" style="height: 15vh;" /> 
+<img src="foodbank/client/public/images/express.png" style="height: 15vh;" />
+<img src="foodbank/client/public/images/graphql.svg.png" style="height: 15vh;" />
+<img src="foodbank/client/public/images/react.png" style="height: 15vh;" />
+<img src="foodbank/client/public/images/chakraui.png" style="height: 15vh;" />
 
 </div>
 
-</br>
+## </br>
 
 ## Usage
 
