@@ -15,8 +15,17 @@ const transactionSchema = new Schema({
         type: String,
         required: true
     },
-    batch:{
+    batch: {
         type: String,
+        required: true
+    },
+    batchSize: {
+        type: String,
+        required: true
+    },
+    operation: {
+        type: String,
+        enum: ['Receive', 'Distribute'],
         required: true
     }
 }, { timestamps: true });

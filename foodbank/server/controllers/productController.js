@@ -2,35 +2,52 @@ const { Product, Transaction } = require('../models');
 
 
 module.exports = {
-    async getAllTransactionReceive(req, res) {
+    async getAllProduct(req, res) {
         try {
             res.json({ 'd': 'd' });
         } catch (err) {
             res.status(500).json(err);
         }
     },
-    async getTransactionReceive(req, res) {
+    async getProduct(req, res) {
         try {
             res.json({ 'd': 'd' });
         } catch (err) {
             res.status(500).json(err);
         }
     },
-    async addTransactionReceive(req, res) {
+    async addProduct(req, res) {
         try {
             res.json({ 'd': 'd' });
         } catch (err) {
             res.status(500).json(err);
         }
     },
-    async modifyTransactionReceive(req, res) {
+    async addProductQuantity(quantity, res) {
+        try {
+            const res = { 'd': 'd' };
+        } catch (err) {
+            const res = { 'error': 'd' };
+        }
+        return res;
+
+    },
+    async substractProductQuantity(quantity, res) {
+        try {
+            const res = { 'd': 'd' };
+        } catch (err) {
+            const res = { 'error': 'd' };
+        }
+        return res;
+    },
+    async modifyProduct(req, res) {
         try {
             res.json({ 'd': 'd' });
         } catch (err) {
             res.status(500).json(err);
         }
     },
-    async restoreTransactionReceive(req, res) {
+    async deleteProduct(req, res) {
         try {
             res.json({ 'd': 'd' });
         } catch (err) {
