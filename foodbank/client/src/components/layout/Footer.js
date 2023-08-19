@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Flex, Text, Link, Spacer, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, Text, Spacer, useColorModeValue } from '@chakra-ui/react';
+import { Link, Link as ReactRouterLink } from 'react-router-dom'; 
 
 function Footer() {
     const bg = useColorModeValue("primary", "gray.800");
@@ -22,8 +23,8 @@ function Footer() {
             <Spacer />
 
             <Box>
-                <Link href="#" mx={2}>Privacy Policy</Link>
-                <Link href="#" mx={2}>Terms of Service</Link>
+                <ReactRouterLink to="/privacy" mx={2}>Privacy Policy</ReactRouterLink>
+                <ReactRouterLink to="/terms" mx={2}>Terms of Service</ReactRouterLink>
             </Box>
         </Flex>
     );

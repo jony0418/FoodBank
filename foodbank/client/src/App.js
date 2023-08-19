@@ -5,9 +5,20 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import ProductList from './pages/productlist'; 
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import theme from "./theme";
+import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
+import PrivacyPolicy from './components/admin/PrivacyPolicy';
+import TermsOfService from './components/admin/TermsOfService'; 
+
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
 
 
 import Login from "./components/auth/Login";
@@ -17,9 +28,6 @@ import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 import DistributionReport from "./pages/DistributionReportPage";
 
-//const httpLink = createHttpLink({
-//  uri: '/graphql',
-//});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -60,11 +68,13 @@ function App() {
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem" element={<ModifyItem />} />
-              {/* <Route path="/matchup" element={<Matchup />} />
-              <Route path="/matchup/:id" element={<Vote />} /> */}
+
+              <Route path="/privacy" element={<PrivacyPolicy />}/>
+              <Route path="/terms" element={<TermsOfService />}/>
+
+
 
               <Route path="*" element={<h1>Not found</h1>}></Route>
-              {/* <Route path="/checkout" element={<Checkout />} /> */}
             </Routes>
           </div>
         </Router>

@@ -1,12 +1,11 @@
 'use client'
 
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image, Box, Link } from '@chakra-ui/react';
- import { Link as ReactRouterLink} from 'react-router-dom';
-import { useState} from 'react';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UserLogin } from '../utils/mutations';
 import Auth from '../utils/auth';
- 
 
 const Login = (props) => {
     const [userState, setuserState] = useState({ email: '', password: '' });
@@ -45,15 +44,7 @@ const Login = (props) => {
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
-        <Image src='../../images/logo.png' alt="logo" />
           <Heading fontSize={'2xl'}>Sign in to your account</Heading>
-           {data ? (    
-            <p>
-            Success! You may now head{' '}
-                <Link to='/dashboard'>Login</Link>
-            </p>
-            ) : (
- 
           <form onSubmit={handleFormSubmit}>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
@@ -89,7 +80,7 @@ const Login = (props) => {
             )}
           <Box>
             New to us?{" "}
-            <Link color="blue.500" href="#" as={ReactRouterLink} to='/register'>
+            <Link color="teal.500" href="#" as={ReactRouterLink} to='/register'>
               Sign Up
             </Link>
           </Box>
@@ -98,7 +89,7 @@ const Login = (props) => {
       <Flex flex={1}>
         <Image
           src={
-            '../../images/food.jpg'
+            'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
           }
           alt={'Login Image'}
           objectFit={'cover'}

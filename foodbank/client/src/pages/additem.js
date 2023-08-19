@@ -34,15 +34,6 @@ function AddItem() {
   return (
     <Stack spacing={4}>
         <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='id' />
-          <Input
-            placeholder='item id'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
-
-        <InputGroup>
           <InputLeftAddon style={inputLeftAddonStyle} children='name' />
           <Input
             placeholder='item name'
@@ -52,9 +43,27 @@ function AddItem() {
         </InputGroup>
 
         <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='measuring units' />
+          <InputLeftAddon style={inputLeftAddonStyle} children='description' />
           <Input
-            placeholder='pieces/kg/etc'
+            placeholder='item description'
+            value={inputValues.id}
+            onChange={(e) => handleInputChange('id', e.target.value)}
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <InputLeftAddon style={inputLeftAddonStyle} children='image' />
+          <Input
+            placeholder='image'
+            value={inputValues.id}
+            onChange={(e) => handleInputChange('id', e.target.value)}
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <InputLeftAddon style={inputLeftAddonStyle} children='quantity' />
+          <Input
+            placeholder='how many'
             value={inputValues.id}
             onChange={(e) => handleInputChange('id', e.target.value)}
           />
@@ -63,16 +72,7 @@ function AddItem() {
         <InputGroup>
           <InputLeftAddon style={inputLeftAddonStyle} children='category' />
           <Input
-            placeholder='fruit/legume/etc'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
-
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='family' />
-          <Input
-            placeholder='???'
+            placeholder='fruit/legumes/etc'
             value={inputValues.id}
             onChange={(e) => handleInputChange('id', e.target.value)}
           />
