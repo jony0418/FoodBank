@@ -10,6 +10,7 @@ module.exports = {
             }
             product.quantity += quantity;
             await product.save();
+            //console.log('Product quantity added successfully.')
             return { message: 'Product quantity added successfully.' };
         } catch (err) {
             return { error: err.message || 'Error adding product quantity.' };
@@ -22,6 +23,7 @@ module.exports = {
                 throw new Error('Product not found.');
             }
             product.quantity -= quantity;
+            //console.log('Product quantity subtracted successfully.')
             await product.save();
             return { message: 'Product quantity subtracted successfully.' };
         } catch (err) {

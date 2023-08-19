@@ -55,7 +55,7 @@ module.exports = {
     },
     async restoreTransaction() {
         try {
-            const transactions = await Transaction.find().populate('product');
+            const transactions = await Transaction.find().populate('product');           
 
             for (const transaction of transactions) {
                 for (const product of transaction.product) {
@@ -65,13 +65,14 @@ module.exports = {
                         console.warn(`Product with ID ${product._id} not found.`);
                         continue;
                     }
-
+                    
                     if (transaction.operation === 'Receive') {
-                        addProductQuantity(existingProduct._id, product.quantity);
+                        await addProductQuantity(existingProduct._id, product.quantity);
                     } else if (transaction.operation === 'Distribute') {
-                        subtractProductQuantity(existingProduct._id, product.quantity);
+                        await subtractProductQuantity(existingProduct._id, product.quantity);
                     }
-
+                    const updatedProduct = await Product.findById(product._id);
+                    console.log({ name: existingProduct.name, old: existingProduct.quantity, [transaction.operation]: product.quantity, new: updatedProduct.quantity });
                     await existingProduct.save();
                 }
             }
