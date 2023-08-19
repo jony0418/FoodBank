@@ -1,8 +1,8 @@
-# FoodBank
+# 🌽 FoodBank
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Description
+## ✍🏼 Description
 
 According to the CONEVAL (Consejo Nacional de Evaluacion de la Politica de Desarrollo Social) found that 22.5% of the population in Mexico are at risk due to a lack of access of nutrititous good quality food.
 
@@ -10,7 +10,7 @@ FoodBank is an idea created as a tool to help the most vulnerable in our communi
 
 Using React, mongoDB, Chakra UI and the skills of a multitalented team we have created FoodBank.
 
-## Table Content
+## 📄 Table Content
 
 - [Important Links](#important-links)
 - [Installation Instructions](#installation-instructions)
@@ -27,6 +27,29 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 - [Project Presentation]()
 
 ## Installation
+
+</br>
+
+<div style="display: inline_block">
+
+[![JavaScript](foodbank/client/public/images/javascript.svg)
+&nbsp;&nbsp;
+![NodeJS](foodbank/client/public/images/node.png) //listo
+&nbsp;&nbsp;
+![ExpressJS](foodbank/client/public/images/express.png) //listo
+&nbsp;&nbsp;
+![MongoDB](foodbank/client/public/images/mongodb.png) //listo
+&nbsp;&nbsp;
+![GraphQL](foodbank/client/public/images/graphql.svg.png)
+&nbsp;&nbsp;
+![React](foodbank/client/public/images/react.png)
+&nbsp;&nbsp;
+![Chakra UI](foodbank/client/public/images/chakraui.png)
+&nbsp;&nbsp;
+
+</div>
+
+</br>
 
 ## Usage
 
