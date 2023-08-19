@@ -23,7 +23,7 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 ## ‼️ Important Links
 
-- [Github Repository]()
+- [Github Repository](https://github.com/jony0418/FoodBank.git)
 - [Walkthrough Video]()
 - [Project Presentation]()
 
