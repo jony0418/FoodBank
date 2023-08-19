@@ -31,13 +31,14 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 FoodBank also uses a variety of dependencies to make this application funtion:
 
+```
 - concurrently: "^5.1.0"
-
 - @chakra-ui: "^1.0.0",
 - graphql: "^15.4.0",
 - date-fns": "^2.30.0".
 - @apollo/client: "^3.3.7"
 - eslint: "^8.47.0"
+```
 
 </br>
 
