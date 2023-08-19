@@ -29,13 +29,22 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 ## 💻 Technologies
 
---
+FoodBank also uses a variety of dependencies to make this application funtion:
+
+- concurrently: "^5.1.0"
+
+- @chakra-ui: "^1.0.0",
+- graphql: "^15.4.0",
+- date-fns": "^2.30.0".
+- @apollo/client: "^3.3.7"
+- eslint: "^8.47.0"
+
 </br>
 
 <div style="display: inline_block">
 
 <img src="foodbank/client/src/assets/javascript.svg" style="height: 13vh; padding: 5vw" />
-<img src="foodbank/client/src/assets/mongodb.svg" style="height: 13vh; padding: 5vw />
+<img src="foodbank/client/src/assets/mongodb.svg" style="height: 13vh; padding: 5vw" />
 <img src="foodbank/client/src/assets/node-js.webp" style="height: 13vh; padding: 5vw" /> 
 <img src="foodbank/client/src/assets/graphql.svg.png" style="height: 13vh; padding: 5vw" />
 <img src="foodbank/client/src/assets/react.svg" style="height: 13vh; padding: 5vw" />
