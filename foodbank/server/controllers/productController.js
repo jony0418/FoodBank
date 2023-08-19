@@ -1,22 +1,31 @@
-const { Product, Transaction } = require('../models');
+const { Product } = require('../models');
 
 
-module.exports = {    
-    async addProductQuantity(quantity, res) {
+module.exports = {
+    async addProductQuantity(productId, quantity) {
         try {
-            const res = { 'd': 'd' };
+            const product = await Product.findById(productId);
+            if (!product) {
+                throw new Error('Product not found.');
+            }
+            product.quantity += quantity;
+            await product.save();
+            return { message: 'Product quantity added successfully.' };
         } catch (err) {
-            const res = { 'error': 'd' };
+            return { error: err.message || 'Error adding product quantity.' };
         }
-        return res;
-
     },
-    async substractProductQuantity(quantity, res) {
+    async subtractProductQuantity(productId, quantity) {
         try {
-            const res = { 'd': 'd' };
+            const product = await Product.findById(productId);
+            if (!product) {
+                throw new Error('Product not found.');
+            }
+            product.quantity -= quantity;
+            await product.save();
+            return { message: 'Product quantity subtracted successfully.' };
         } catch (err) {
-            const res = { 'error': 'd' };
+            return { error: err.message || 'Error subtracting product quantity.' };
         }
-        return res;
     },
 };
