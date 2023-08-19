@@ -18,9 +18,8 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 - [Installation Instructions](#installation-instructions)
 - [Usage Information](#usage-information)
 - [License](#license)
-- [Contribution Guidelines](#contribution-guidelines)
-- [Test Instructions](#tests-instructions)
 - [Questions](#questions)
+- [Credits](#👩🏻‍💻👨🏻‍💻credits)
 
 ## ‼️ Important Links
 
@@ -35,13 +34,12 @@ Using React, mongoDB, Chakra UI and the skills of a multitalented team we have c
 
 <div style="display: inline_block">
 
-<img src="foodbank/client/public/images/javascript.svg" style="height: 15vh;" />
-<img src="foodbank/client/public/images/mongodb.svg" style="height: 15vh; />
-<img src="foodbank/client/public/images/node-js.webp" style="height: 15vh;" /> 
-<img src="foodbank/client/public/images/express.png" style="height: 15vh;" />
-<img src="foodbank/client/public/images/graphql.svg.png" style="height: 15vh;" />
-<img src="foodbank/client/public/images/react.png" style="height: 15vh;" />
-<img src="foodbank/client/public/images/chakraui.png" style="height: 15vh;" />
+<img src="foodbank/client/src/assets/javascript.svg" style="height: 13vh; padding: 5vw" />
+<img src="foodbank/client/src/assets/mongodb.svg" style="height: 13vh; padding: 5vw />
+<img src="foodbank/client/src/assets/node-js.webp" style="height: 13vh; padding: 5vw" /> 
+<img src="foodbank/client/src/assets/graphql.svg.png" style="height: 13vh; padding: 5vw" />
+<img src="foodbank/client/src/assets/react.svg" style="height: 13vh; padding: 5vw" />
+<img src="foodbank/client/src/assets/chakraui.png" style="height: 13vh; padding: 5vw" />
 
 </div>
 
@@ -83,22 +81,18 @@ Not Applicable
 
 If you have any questions you may contact any of the contributing members.
 
-## 👩🏻‍💻👨🏻‍💻Credits
+## 👩🏻‍💻👨🏻‍💻 Credits
 
 This proyect was created by:
 
-- [Rodrigo Roldan: @](https://github.com/RodrigoRoL);
-- [Gerardo Garcia-Salas @ ](https://github.com/SalasGS94);
-- [Santiago Valenzuela @](https://github.com/santis1001);
-- [Jose Maria Hernandez @ ](https://github.com/ChemaKing13);
-- [Isabella Ruiz @](https://github.com/isanator2000)
-- [Jonathan Becerra @ ](https://github.com/jony0418);
-- [Andrea Ceron: @](https://github.com/aceron2205)
+- [Rodrigo Roldan](https://github.com/RodrigoRoL);
+- [Gerardo Garcia-Salas](https://github.com/SalasGS94);
+- [Santiago Valenzuela](https://github.com/santis1001);
+- [Jose Maria Hernandez ](https://github.com/ChemaKing13);
+- [Isabella Ruiz](https://github.com/isanator2000)
+- [Jonathan Becerra](https://github.com/jony0418);
+- [Andrea Ceron](https://github.com/aceron2205)
 
 ## License
 
 This application is covered under the MIT License. For more info, click here: [License: MIT](https://opensource.org/licenses/MIT)
-
-```
-
-```
