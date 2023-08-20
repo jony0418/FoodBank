@@ -1,4 +1,6 @@
 import React from "react";
+import { useMutation } from "@apollo/client";
+// import React, { Component } from "react";
 import {
   FormControl,
   FormLabel,
@@ -12,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 
 function DistributionRequest() {
+  const [billOfMaterial, setBillofMaterial] = useState([]);
+
   return (
     <FormControl isRequired>
       <Heading as="h1" size="l">
