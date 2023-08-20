@@ -25,6 +25,7 @@ function Footer() {
             <HStack spacing="30px">
                 <ReactRouterLink to="/privacy" mx={2}>Privacy Policy</ReactRouterLink>
                 <ReactRouterLink to="/terms" mx={2}>Terms of Service</ReactRouterLink>
+                <ReactRouterLink to="/aboutus" mx={2}>About Us</ReactRouterLink>
             </HStack>
         </Flex>
     );
