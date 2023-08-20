@@ -1,40 +1,41 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ChakraProvider, ColorModeScript, CSSReset } from '@chakra-ui/react';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import ProductList from './pages/productlist'; 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ChakraProvider, ColorModeScript, CSSReset } from "@chakra-ui/react";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { createHttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
+import ProductList from "./pages/productlist";
+import BoM from "./pages/DistributionRequest";
+import AddItem from "./pages/additem";
+import ModifyItem from "./pages/modifyitem";
+
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import theme from "./theme";
 import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
-import AddItem from './pages/additem';
-import ModifyItem from './pages/modifyitem';
-import PrivacyPolicy from './components/admin/PrivacyPolicy';
-import TermsOfService from './components/admin/TermsOfService'; 
+import AddItem from "./pages/additem";
+import ModifyItem from "./pages/modifyitem";
+import PrivacyPolicy from "./components/admin/PrivacyPolicy";
+import TermsOfService from "./components/admin/TermsOfService";
 import DistributionReport from "./pages/DistributionReportPage";
 import Distribution from "./components/admin/DistributionManagement";
-import AboutUs from './components/admin/AboutUs';
-
+import AboutUs from "./components/admin/AboutUs";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
-
-
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
-
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -59,17 +60,14 @@ function App() {
                 element={<DistributionReport />}
               />
 
-
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem" element={<ModifyItem />} />
 
-              <Route path="/privacy" element={<PrivacyPolicy />}/>
-              <Route path="/terms" element={<TermsOfService />}/>
-              <Route path="/aboutus" element={<AboutUs />}/>
-
-
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/aboutus" element={<AboutUs />} />
 
               <Route path="*" element={<h1>Not found</h1>}></Route>
             </Routes>
