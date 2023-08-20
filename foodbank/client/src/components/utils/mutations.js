@@ -20,3 +20,48 @@ mutation Mutation($email: String!, $password: String!) {
   }
 }
 `;
+
+export const addproduct = gql`
+  mutation AddProduct($name: String!, $description: String, $image: String, $quantity: Int, $categoryId: ID) {
+    addProduct(name: $name, description: $description, image: $image, quantity: $quantity, categoryId: $categoryId) {
+      _id
+      name
+      description
+      image
+      quantity
+      category {
+        name
+      }
+    }
+  }
+`;
+
+export const modifyProduct = gql`
+  mutation ModifyProduct($id: ID!, $name: String, $description: String, $image: String, $quantity: Int, $categoryId: ID) {
+    modifyProduct(id: $id, name: $name, description: $description, image: $image, quantity: $quantity, categoryId: $categoryId) {
+      _id
+      name
+      description
+      image
+      quantity
+      category {
+        name
+      }
+    }
+  }
+`;
+
+export const GET_PRODUCT = gql`
+  query GetProduct($name: String!) {
+    product(id: $id) {
+      _id
+      name
+      description
+      image
+      quantity
+      category {
+        name
+      }
+    }
+  }
+`;

@@ -33,13 +33,13 @@ const typeDefs = gql`
         product(productId: ID, name: String): Product
     }
 
-  type Mutation {
+    type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        addProduct(name: String, description: String, quantity: Int, categoryId: ID): Product
+        addProduct(name: String!, description: String, image: String, quantity: Int, categoryId: ID): Product
         addCategory(name: String!): Category
         updateProduct(id: ID!, quantity: Int!): Product
-        deleteProduct( id: ID! ): Product
+        deleteProduct(id: ID!): Product
     }
 `;
 
