@@ -69,6 +69,10 @@ function App() {
               <Route path="/terms" element={<TermsOfService />} />
               <Route path="/aboutus" element={<AboutUs />} />
 
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+
               <Route path="*" element={<h1>Not found</h1>}></Route>
             </Routes>
           </div>
