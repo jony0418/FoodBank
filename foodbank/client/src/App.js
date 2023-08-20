@@ -8,25 +8,21 @@ import ProductList from './pages/productlist';
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
+// import Dashboard from "./components/admin/Dashboard";
 import BoM from "./pages/DistributionRequest";
 import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
 import PrivacyPolicy from './components/admin/PrivacyPolicy';
 import TermsOfService from './components/admin/TermsOfService'; 
 import DistributionReport from "./pages/DistributionReportPage";
+import Distribution from "./components/admin/DistributionManagement";
+import AboutUs from './components/admin/AboutUs';
 
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-
-// import Login from "./components/auth/Login";
-// import Register from "./components/auth/Register";
-// import theme from "./theme";
-// import Dashboard from "./components/admin/Dashboard";
-// import BoM from "./pages/DistributionRequest";
 
 
 const authLink = setContext((_, { headers }) => {
@@ -56,7 +52,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/* {<Route path="/distribution" element={<DistributionManagement />} />} */}
+              <Route path="/distribution" element={<Distribution />} />
               <Route path="/BoM" element={<BoM />} />
               <Route
                 path="/distributionreport"
@@ -64,13 +60,14 @@ function App() {
               />
 
 
-              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem/:productId" element={<ModifyItem />} />
 
               <Route path="/privacy" element={<PrivacyPolicy />}/>
               <Route path="/terms" element={<TermsOfService />}/>
+              <Route path="/aboutus" element={<AboutUs />}/>
 
 
 

@@ -9,7 +9,7 @@ const typeDefs = gql`
     type Category {
         _id: ID
         name: String
-        products: [Product]
+        # products: [Product]
     }
 
     type Product {
@@ -18,6 +18,7 @@ const typeDefs = gql`
         description: String
         image: String
         quantity: Int
+        category: Category 
     }
 
     type Auth {
@@ -31,7 +32,7 @@ const typeDefs = gql`
         category(categoryId: ID, name: String): Category
         products: [Product]
         product(productId: ID, name: String): Product
-    }
+        }
 
   type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth

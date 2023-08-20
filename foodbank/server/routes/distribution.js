@@ -1,11 +1,10 @@
+// Example for distribution.js
 const express = require('express');
 const router = express.Router();
 
-// Define your inventory-related routes here
+// Define your routes here
 router.get('/', (req, res) => {
-  res.send('Inventory endpoint');
+  res.send('Distribution endpoint');
 });
-
-// You can add more inventory-related routes here
 
 module.exports = router;

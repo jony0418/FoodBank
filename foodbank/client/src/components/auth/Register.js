@@ -4,9 +4,8 @@ import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRigh
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 // import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { useMutation} from '@apollo/client';
-import { addUser } from '../utils/mutations';
-
+import { useMutation, useQuery } from '@apollo/client';
+import { addUser } from '../utils/mutations'
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
@@ -64,7 +63,7 @@ export default function SignupCard() {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}
-      backgroundImage="../../images/reg3.jpg"> 
+      backgroundImage="../../images/reg3.jpg">
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textAlign={'center'} color='white'>

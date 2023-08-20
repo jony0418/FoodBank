@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS } from '../utils/queries';
+import { GET_PRODUCTS } from '../components/utils/queries';
 
 
 function ProductList() {

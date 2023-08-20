@@ -21,8 +21,13 @@ const resolvers = {
             return Product.find(); 
         },
         product: async (parent, { productId }) => {
-            return Product.findOne({ _id: productId });
-          }
+            try {
+                const product = await Product.findById(productId).populate('category').exec();
+                return product;
+              } catch (error) {
+                throw new Error('Error fetching product: ' + error.message);
+              }
+            }
     },
 
     Mutation: {
@@ -65,7 +70,7 @@ const resolvers = {
 
             category.products.push(product._id); 
             await category.save();
-            return product 
+            return product;
 
         },
         updateProduct: async (parent, { id, quantity }) => {
