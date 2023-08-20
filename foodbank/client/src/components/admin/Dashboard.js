@@ -1,19 +1,38 @@
-import React, { useEffect } from 'react';
-import { Box, Flex, Stat, StatLabel, StatNumber, StatHelpText, Stack, List, ListItem, ListIcon } from '@chakra-ui/react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import { MdCheckCircle } from 'react-icons/md';
-import Header from '../layout/Header';
-import Sidebar from '../layout/Sidebar';
-import Footer from '../layout/Footer';
-import { useNavigate } from 'react-router-dom';
-import Auth from '../utils/auth';
+import React, { useEffect } from "react";
+import {
+  Box,
+  Flex,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  Stack,
+  List,
+  ListItem,
+  ListIcon,
+} from "@chakra-ui/react";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from "recharts";
+import { MdCheckCircle } from "react-icons/md";
+import Header from "../layout/Header";
+import Sidebar from "../layout/Sidebar";
+import Footer from "../layout/Footer";
+import { useNavigate } from "react-router-dom";
+import Auth from "../utils/auth";
 
 const data = [
-  { name: 'Jan', donations: 400 },
-  { name: 'Feb', donations: 300 },
+  { name: "Jan", donations: 400 },
+  { name: "Feb", donations: 300 },
   // ... other months
 ];
 
+//Donations line chart
 function DonationsChart() {
   return (
     <LineChart width={500} height={300} data={data}>
@@ -26,12 +45,13 @@ function DonationsChart() {
   );
 }
 
+//Recent activities
 function RecentActivities() {
   return (
     <List spacing={3}>
       <ListItem>
         <ListIcon as={MdCheckCircle} color="green.500" />
-        New donation received from 
+        New donation received from
       </ListItem>
       {/* ... other activities */}
     </List>
@@ -43,16 +63,16 @@ function Dashboard() {
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
-      console.log('error');
-      navigate('/');
-      // navigate('/register'); 
+      console.log("error");
+      navigate("/");
+      // navigate('/register');
     }
   }, [navigate]);
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      
+
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
         <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
@@ -79,7 +99,7 @@ function Dashboard() {
           </Stack>
         </Box>
       </Flex>
-      
+
       <Footer />
     </Flex>
   );
