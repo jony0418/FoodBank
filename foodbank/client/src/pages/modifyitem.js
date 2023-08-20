@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex } from '@chakra-ui/react';
+import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCT } from '../components/utils/queries';
 
 function ModifyItem() {
+const {loading, data} = useQuery(GET_PRODUCT);
+const product = data?.product || [];
+
   const inputLeftAddonStyle = {
     width: '150px', // Adjust the width as needed
   };
 
   const [inputValues, setInputValues] = useState({
-    id: '',
     name: '',
-    measuringUnits: '',
+    quantity: '',
     category: '',
-    family: '',
   });
 
   const handleInputChange = (fieldName, value) => {
@@ -36,15 +39,16 @@ function ModifyItem() {
 
   return (
     <Stack spacing={4}>
-        <InputGroup>
+      <Box>{product._id}</Box>
+        {/* <InputGroup>
           <InputLeftAddon style={inputLeftAddonStyle} children='id' />
           <Input
-            placeholder='item id'
+            placeholder={product._id}
             value={inputValues.id}
             onChange={(e) => handleInputChange('id', e.target.value)}
           />
-        </InputGroup>
-
+        </InputGroup> */}
+      
         <InputGroup>
           <InputLeftAddon style={inputLeftAddonStyle} children='name' />
           <Input
@@ -55,7 +59,7 @@ function ModifyItem() {
         </InputGroup>
 
         <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='measuring units' />
+          <InputLeftAddon style={inputLeftAddonStyle} children='quantity' />
           <Input
             placeholder='pieces/kg/etc'
             value={inputValues.id}
@@ -71,16 +75,6 @@ function ModifyItem() {
             onChange={(e) => handleInputChange('id', e.target.value)}
           />
         </InputGroup>
-
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='family' />
-          <Input
-            placeholder='???'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
-
 
       {/* Repeat the above pattern for other input groups */}
       

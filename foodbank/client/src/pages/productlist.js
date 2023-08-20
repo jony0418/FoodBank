@@ -29,7 +29,7 @@ function ProductList() {
               <Th>Name</Th>
               <Th>Quantity</Th>
               <Th>Description</Th>
-              <Th>Image</Th>
+              <Th>Category</Th>
               {/* <Th>Modify Item</Th>
               <Th>Delete Item</Th> New column */}
             </Tr>
@@ -52,7 +52,7 @@ function ProductList() {
                   {product.description}
                 </Td>
                 <Td>
-                  {product.image}
+                  {product.category.name}
                 </Td>
               </Tr>
             ))}

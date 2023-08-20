@@ -18,8 +18,13 @@ const resolvers = {
             return Category.findOne({_id: categoryId}).populate('products')
         },
         products: async () => {
-            return Product.find(); 
-        },
+            try {
+              const products = await Product.find().populate('category').exec();
+              return products;
+            } catch (error) {
+              throw new Error('Error fetching products: ' + error.message);
+            }
+          },
         product: async (parent, { productId }) => {
             try {
                 const product = await Product.findById(productId).populate('category').exec();
