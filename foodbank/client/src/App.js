@@ -14,19 +14,14 @@ import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
 import PrivacyPolicy from './components/admin/PrivacyPolicy';
 import TermsOfService from './components/admin/TermsOfService'; 
+import DistributionReport from "./pages/DistributionReportPage";
+import Distribution from "./components/admin/DistributionManagement";
 
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
-
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
-import BoM from "./pages/DistributionRequest";
-import DistributionReport from "./pages/DistributionReportPage";
 
 
 const authLink = setContext((_, { headers }) => {
@@ -56,7 +51,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/* {<Route path="/distribution" element={<DistributionManagement />} />} */}
+              <Route path="/distribution" element={<Distribution />} />
               <Route path="/BoM" element={<BoM />} />
               <Route
                 path="/distributionreport"
