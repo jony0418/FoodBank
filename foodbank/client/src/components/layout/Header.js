@@ -33,7 +33,6 @@ function Header() {
         {/* ... other navigation links */}
         {Auth.loggedIn() && (
           <>
-            <ReactRouterLink mx={2} onClick={handleLogout} color="quaternary">Log Out</ReactRouterLink>
             <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
           </>
         )}
