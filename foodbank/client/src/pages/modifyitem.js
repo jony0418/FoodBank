@@ -1,18 +1,56 @@
 import React, { useState } from 'react';
-import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex } from '@chakra-ui/react';
+import { useQuery, useMutation, gql } from '@apollo/client';
+import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui/react';
+import Header from '../components/layout/Header';
+import Sidebar from '../components/layout/Sidebar';
+import Footer from '../components/layout/Footer';
+import { modifyProduct } from '../components/utils/mutations'; // Make sure to update the path
+
+// Define the query to get the product by name
+const GET_PRODUCT_BY_NAME = gql`
+  query GetProductByName($name: String!) {
+    product(name: $name) {
+      _id
+      name
+      description
+      image
+      quantity
+      category
+    }
+  }
+`;
 
 function ModifyItem() {
   const inputLeftAddonStyle = {
-    width: '150px', // Adjust the width as needed
+    width: '150px',
   };
 
+  const [searchName, setSearchName] = useState('');
   const [inputValues, setInputValues] = useState({
     id: '',
     name: '',
-    measuringUnits: '',
+    description: '',
+    image: '',
+    quantity: '',
     category: '',
-    family: '',
   });
+
+  const { loading, error, data } = useQuery(GET_PRODUCT_BY_NAME, {
+    variables: { name: searchName },
+    skip: !searchName,
+  });
+
+  const [modifyProductMutation] = useMutation(modifyProduct);
+
+  const handleSearchChange = (e) => {
+    setSearchName(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    if (data && data.product) {
+      setInputValues(data.product);
+    }
+  };
 
   const handleInputChange = (fieldName, value) => {
     setInputValues((prevValues) => ({
@@ -21,71 +59,57 @@ function ModifyItem() {
     }));
   };
 
-  const handleAddItem = () => {
-    // You can perform further actions with the input values here
-    console.log('Input values:', inputValues);
+  const handleModifyItem = async () => {
+    try {
+      const { data } = await modifyProductMutation({
+        variables: {
+          ...inputValues,
+          quantity: parseInt(inputValues.quantity),
+        },
+      });
+      console.log('Product modified:', data.modifyProduct);
+    } catch (error) {
+      console.error('Error modifying product:', error);
+    }
   };
 
   const buttonStyle = {
-    width: '100px', // Adjust the width as needed
+    width: '100px',
   };
 
   return (
-    <Stack spacing={4}>
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='id' />
-          <Input
-            placeholder='item id'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
+    <Flex direction="column" minHeight="100vh">
+      <Header />
 
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='name' />
-          <Input
-            placeholder='item name'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
+      <Flex as="main" flex="1" p={4}>
+        <Sidebar />
+        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+          <InputGroup>
+            <InputLeftAddon children='Search by Name' />
+            <Input
+              placeholder='Product name'
+              value={searchName}
+              onChange={handleSearchChange}
+            />
+            <Button onClick={handleSearchClick}>Search</Button>
+          </InputGroup>
 
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='measuring units' />
-          <Input
-            placeholder='pieces/kg/etc'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
+          {loading && <p>Loading...</p>}
+          {error && <p>Error: {error.message}</p>}
 
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='category' />
-          <Input
-            placeholder='fruit/legume/etc'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
+          {/* Add InputGroup components for other fields here */}
+          {/* ... */}
 
-        <InputGroup>
-          <InputLeftAddon style={inputLeftAddonStyle} children='family' />
-          <Input
-            placeholder='???'
-            value={inputValues.id}
-            onChange={(e) => handleInputChange('id', e.target.value)}
-          />
-        </InputGroup>
-
-
-      {/* Repeat the above pattern for other input groups */}
-      
-      <Flex justifyContent="center">
-        <Button size="sm" colorScheme="green" style={buttonStyle} onClick={handleAddItem}>
-          Modify Item
-        </Button>
+          <Flex justifyContent="center">
+            <Button size="sm" colorScheme="green" style={buttonStyle} onClick={handleModifyItem}>
+              Modify Item
+            </Button>
+          </Flex>
+        </Box>
       </Flex>
-    </Stack>
+
+      <Footer />
+    </Flex>
   );
 }
 

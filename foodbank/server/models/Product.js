@@ -4,21 +4,26 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
     name: {
-        type: String,
-        required: true,
-        trim: true
+      type: String,
+      required: true,
+      trim: true
     },
     description: {
-        type: String
+      type: String
     },
     image: {
-        type: String
+      type: String
     },
     quantity: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0
+    },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: 'Category' // Reference to the Category model
     }
-}, { timestamps: true }); 
+  }, { timestamps: true });
+  
 
 const Product = mongoose.model('Product', productSchema); 
 

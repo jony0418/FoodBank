@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Link, Spacer, Text, useColorMode, IconButton } from '@chakra-ui/react';
+import { Box, Flex, Spacer, Text, useColorMode, IconButton, HStack } from '@chakra-ui/react';
 import { useNavigate, Link as ReactRouterLink } from 'react-router-dom';
 
 import Auth from '../utils/auth';
@@ -28,16 +28,15 @@ function Header() {
         </Box>
       </ReactRouterLink>
       <Spacer />
-      <Box>
+      <HStack spacing="30px">
         <ReactRouterLink mx={2} to="/" color="quaternary">Home</ReactRouterLink>
         {/* ... other navigation links */}
         {Auth.loggedIn() && (
           <>
-            <ReactRouterLink mx={2} onClick={handleLogout} color="quaternary">Log Out</ReactRouterLink>
             <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
           </>
         )}
-      </Box>
+      </HStack>
       <IconButton
         ml={4}
         onClick={toggleColorMode}

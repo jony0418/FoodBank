@@ -2,6 +2,12 @@ const { Product } = require('../models');
 
 
 module.exports = {
+    /**
+     * 
+     * @param {*} productId 
+     * @param {*} quantity 
+     * @returns 
+     */
     async addProductQuantity(productId, quantity) {
         try {
             const product = await Product.findById(productId);
