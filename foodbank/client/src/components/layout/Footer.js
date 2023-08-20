@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex, Text, Spacer, useColorModeValue, HStack } from '@chakra-ui/react';
-import { Link, Link as ReactRouterLink } from 'react-router-dom'; 
+import { Flex, Text, Spacer, useColorModeValue, HStack } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom'; 
 
 function Footer() {
     const bg = useColorModeValue("primary", "gray.800");
