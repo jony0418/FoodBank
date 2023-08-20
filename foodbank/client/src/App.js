@@ -16,6 +16,7 @@ import PrivacyPolicy from './components/admin/PrivacyPolicy';
 import TermsOfService from './components/admin/TermsOfService'; 
 import DistributionReport from "./pages/DistributionReportPage";
 import Distribution from "./components/admin/DistributionManagement";
+import AboutUs from './components/admin/AboutUs';
 
 
 const httpLink = createHttpLink({
@@ -66,6 +67,7 @@ function App() {
 
               <Route path="/privacy" element={<PrivacyPolicy />}/>
               <Route path="/terms" element={<TermsOfService />}/>
+              <Route path="/aboutus" element={<AboutUs />}/>
 
 
 
