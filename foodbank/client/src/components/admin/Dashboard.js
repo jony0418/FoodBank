@@ -61,6 +61,22 @@ function Dashboard() {
                 <StatNumber>$1,234</StatNumber>
                 <StatHelpText>Since last month</StatHelpText>
               </Stat>
+import Login from '../auth/Login';
+import { useEffect } from 'react';
+
+function Dashboard() {
+    const navigate = useNavigate();
+    console.log(Auth.loggedIn());  
+
+    useEffect(() => {
+        if (!Auth.loggedIn()) {
+            console.log('error');
+            navigate('/')
+            // navigate('/register'); 
+        }
+
+    });  
+
 
               <Stat>
                 <StatLabel>Inventory Items</StatLabel>
