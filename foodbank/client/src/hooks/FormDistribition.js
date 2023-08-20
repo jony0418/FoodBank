@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 function DistributionRequest() {
-  render(
+  return (
     <FormControl isRequired>
       <Heading as="h1" size="l">
         Distribution Form

@@ -12,26 +12,51 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCTS } from '../utils/queries';
 
 
 function ProductList() {
+  const {loading, data} = useQuery(GET_PRODUCTS);
+  const products = data?.products || [];
   return (
     <div className='productlist'>
       <TableContainer>
         <Table variant='simple'>
           <Thead>
             <Tr>
+              <Th>Id</Th>
               <Th>Name</Th>
+              <Th>Quantity</Th>
               <Th>Description</Th>
               <Th>Image</Th>
-              <Th>Quantity</Th>
-              <Th>Category</Th>
-              <Th>Modify Item</Th>
-              <Th>Delete Item</Th> {/* New column */}
+              {/* <Th>Modify Item</Th>
+              <Th>Delete Item</Th> New column */}
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
+            {products.map ((product,i)=>(
+              <Tr> 
+                <Td>
+                <Link to={`/modifyitem/${product._id}`}>
+                  {product._id}
+                  </Link>
+                </Td>
+                <Td>
+                  {product.name}
+                </Td>
+                <Td>
+                  {product.quantity}
+                </Td>
+                <Td>
+                  {product.description}
+                </Td>
+                <Td>
+                  {product.image}
+                </Td>
+              </Tr>
+            ))}
+            {/* <Tr>
               <Td>Apple</Td>
               <Td>Green apples</Td>
               <Td>Image here</Td>
@@ -66,7 +91,7 @@ function ProductList() {
               </Td>
               <Td>
               <FaTrash color='red' cursor='pointer' />              </Td>
-              </Tr>
+              </Tr> */}
             {/* ... Other rows ... */}
           </Tbody>
         </Table>

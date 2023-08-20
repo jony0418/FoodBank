@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 
 function ModifyItem() {
   const inputLeftAddonStyle = {
@@ -29,6 +30,9 @@ function ModifyItem() {
   const buttonStyle = {
     width: '100px', // Adjust the width as needed
   };
+
+  const {productId}= useLocation()
+  console.log(productId);
 
   return (
     <Stack spacing={4}>

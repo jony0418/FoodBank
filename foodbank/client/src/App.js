@@ -14,6 +14,7 @@ import AddItem from './pages/additem';
 import ModifyItem from './pages/modifyitem';
 import PrivacyPolicy from './components/admin/PrivacyPolicy';
 import TermsOfService from './components/admin/TermsOfService'; 
+import DistributionReport from "./pages/DistributionReportPage";
 
 
 const httpLink = createHttpLink({
@@ -21,12 +22,11 @@ const httpLink = createHttpLink({
 });
 
 
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import theme from "./theme";
-import Dashboard from "./components/admin/Dashboard";
-import BoM from "./pages/DistributionRequest";
-import DistributionReport from "./pages/DistributionReportPage";
+// import Login from "./components/auth/Login";
+// import Register from "./components/auth/Register";
+// import theme from "./theme";
+// import Dashboard from "./components/admin/Dashboard";
+// import BoM from "./pages/DistributionRequest";
 
 
 const authLink = setContext((_, { headers }) => {
@@ -67,7 +67,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
-              <Route path="/modifyitem" element={<ModifyItem />} />
+              <Route path="/modifyitem/:productId" element={<ModifyItem />} />
 
               <Route path="/privacy" element={<PrivacyPolicy />}/>
               <Route path="/terms" element={<TermsOfService />}/>

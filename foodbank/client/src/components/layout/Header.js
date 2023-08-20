@@ -39,7 +39,7 @@ function Header() {
 
                     <ReactRouterLink mx={2} onClick={handleLogout} color="quaternary">Log Out</ReactRouterLink>
 
-                    <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
+                    // <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
 
                 )}
             </Box>
