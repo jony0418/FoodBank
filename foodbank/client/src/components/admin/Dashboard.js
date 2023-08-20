@@ -43,7 +43,9 @@ function Dashboard() {
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
+      console.log('error');
       navigate('/');
+      // navigate('/register'); 
     }
   }, [navigate]);
 
@@ -61,36 +63,17 @@ function Dashboard() {
                 <StatNumber>$1,234</StatNumber>
                 <StatHelpText>Since last month</StatHelpText>
               </Stat>
-import Login from '../auth/Login';
-import { useEffect } from 'react';
-
-function Dashboard() {
-    const navigate = useNavigate();
-    console.log(Auth.loggedIn());  
-
-    useEffect(() => {
-        if (!Auth.loggedIn()) {
-            console.log('error');
-            navigate('/')
-            // navigate('/register'); 
-        }
-
-    });  
-
-
               <Stat>
                 <StatLabel>Inventory Items</StatLabel>
                 <StatNumber>567</StatNumber>
                 <StatHelpText>10 new items</StatHelpText>
               </Stat>
-
               <Stat>
                 <StatLabel>Families Served</StatLabel>
                 <StatNumber>89</StatNumber>
                 <StatHelpText>Since last week</StatHelpText>
               </Stat>
             </Flex>
-
             <DonationsChart />
             <RecentActivities />
           </Stack>
