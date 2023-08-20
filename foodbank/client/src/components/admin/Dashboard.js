@@ -18,7 +18,9 @@ function Dashboard() {
             navigate('/')
             // navigate('/register'); 
         }
+
     });  
+
 
     return (
         <Flex direction="column" minHeight="100vh">
