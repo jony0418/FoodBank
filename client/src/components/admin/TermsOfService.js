@@ -8,13 +8,24 @@ function TermsOfService() {
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.700", "gray.200");
   
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }  
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}> {/* Apply the bg and color */}
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}> {/* Apply the bg and color */}
           <Text fontSize="xl" fontWeight="bold">Terms of Service</Text>
           <Text mt={4}>
             Welcome to FoodBank. These Terms of Service govern your use of our services. Please read these Terms carefully.

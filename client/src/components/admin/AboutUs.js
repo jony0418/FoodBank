@@ -7,14 +7,26 @@ import Footer from '../layout/Footer';
 function AboutUs() {
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.700", "gray.200");
+
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "60%"
+  }
+  
   return (
-    <Flex direction="column" minHeight="100vh" minWidth="100vh">
+    <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" flex={1} p={4}>
-        <Sidebar />
-        <Box flex={1} ml={4} p={5} bg={bg} borderRadius="md" maxWidth={'full'} minHeight={'full'} color={color}>
-          <Container maxWidth={'70%'} mt={10}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+        <Sidebar/>
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
+          <Container maxWidth={'50%'} mt={10} flex="1">
 
             <Heading as='h2' size='2xl'>About Us</Heading>
             <Text mt={4}>
@@ -28,36 +40,36 @@ function AboutUs() {
 
             <Heading as='h2' size='xl' mt={10}>Key Features:</Heading>
             <List mt={4} spacing={2}>
-              <ListItem>User registration and login for making donations.</ListItem>
-              <ListItem>Admin tracking of all donations and generating reports.</ListItem>
-              <ListItem>Management of food inventory, including adding, updating, and deleting items.</ListItem>
-              <ListItem>Logging the receipt and distribution of food items.</ListItem>
-              <ListItem>User tracking of food distribution.</ListItem>
-              <ListItem>Integration with Stripe for secure payment processing.</ListItem>
-              <ListItem>Responsive and mobile-friendly design.</ListItem>
+              <ListItem fontSize='md'>User registration and login for making donations.</ListItem>
+              <ListItem fontSize='md'>Admin tracking of all donations and generating reports.</ListItem>
+              <ListItem fontSize='md'>Management of food inventory, including adding, updating, and deleting items.</ListItem>
+              <ListItem fontSize='md'>Logging the receipt and distribution of food items.</ListItem>
+              <ListItem fontSize='md'>User tracking of food distribution.</ListItem>
+              <ListItem fontSize='md'>Integration with Stripe for secure payment processing.</ListItem>
+              <ListItem fontSize='md'>Responsive and mobile-friendly design.</ListItem>
             </List>
 
             <Heading as='h2' size='xl' mt={10}>Technologies Used:</Heading>
             <List mt={4} spacing={2}>
-              <ListItem>React for the front end.</ListItem>
-              <ListItem>GraphQL with a Node.js and Express.js server.</ListItem>
-              <ListItem>MongoDB and the Mongoose ODM for the database.</ListItem>
-              <ListItem>JWT for authentication.</ListItem>
+              <ListItem fontSize='md'>React for the front end.</ListItem>
+              <ListItem fontSize='md'>GraphQL with a Node.js and Express.js server.</ListItem>
+              <ListItem fontSize='md'>MongoDB and the Mongoose ODM for the database.</ListItem>
+              <ListItem fontSize='md'>JWT for authentication.</ListItem>
             </List>
 
             <Text mt={10}>
               We are committed to supporting food banks in their vital work and are constantly working to enhance our platform. If you have any questions or feedback, please don't hesitate to contact us.
             </Text>
-          </Container>
+          </Container>        
         </Box>
-        <Flex>
+        <Container maxWidth='20%' flex="20%">
           <Image
             src={'../../images/foodbank-about.png'}
             alt={'AboutUs Image'}
-            w="400px"
             objectFit={'cover'}
+            height="100%"
           />
-        </Flex>
+        </Container>    
       </Flex>
 
       <Footer />
@@ -66,3 +78,4 @@ function AboutUs() {
 }
 
 export default AboutUs;
+  
