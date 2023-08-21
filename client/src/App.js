@@ -68,9 +68,9 @@ function App() {
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
               <Route path="/modifyitem" element={<ModifyItem />} />
+              <Route path="/modifyitem/:productId" element={<ModifyItem />} />
               <Route path="/inputs" element={<Inputs />} />
               <Route path="/output" element={<Output />} />
-
               <Route path="/privacy" element={<PrivacyPolicy />}/>
               <Route path="/terms" element={<TermsOfService />}/>
               <Route path="/aboutus" element={<AboutUs />}/>
