@@ -10,7 +10,7 @@ const transactionSchema = new Schema({
     ],
     transaction_date: {
         type: Date,
-        required: true
+        default: Date.now()
     },
     purpose: {
         type: String,

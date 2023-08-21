@@ -5,37 +5,37 @@ const { restoreTransaction } = require('../controllers/transactionController')
 connection.on('error', (err) => err);
 
 const mockProducts = [
-    { name: 'Product A', description: 'Description for Product A', quantity: 10 },
-    { name: 'Product B', description: 'Description for Product B', quantity: 20 },
-    { name: 'Product C', description: 'Description for Product C', quantity: 30 },
-    { name: 'Product D', description: 'Description for Product D', quantity: 15 },
-    { name: 'Product E', description: 'Description for Product E', quantity: 25 },
+    { name: 'Product A', description: 'Description for Product A', quantity: 0 },
+    { name: 'Product B', description: 'Description for Product B', quantity: 0 },
+    { name: 'Product C', description: 'Description for Product C', quantity: 0 },
+    { name: 'Product D', description: 'Description for Product D', quantity: 0 },
+    { name: 'Product E', description: 'Description for Product E', quantity: 0 },
 ];
 const mockTransactions = [
     {
-        transaction_date: new Date(),
         purpose: 'Receive',
         batch: 'Batch 1',
         batchSize: 'Small',
         operation: 'Receive'
     },
     {
-        transaction_date: new Date(),
         purpose: 'Distribute',
         batch: 'Batch 2',
         batchSize: 'Large',
         operation: 'Distribute'
     },
-    // Add more transactions as needed
+    {
+        purpose: 'Distribute',
+        batch: 'Batch 3',
+        batchSize: 'Large',
+        operation: 'Distribute'
+    },
+
 ];
-/**
- * 
- * @param {*} product -test2 jsdoc
- * @param {*} quantity 
- * @returns 
- */
-const buildInventory = (product, quantity) => ({...product, quantity})
-const buildTransaction = (baseTransaction, product) => ({...baseTransaction, product})
+
+const buildInventory = (product, quantity) => ({ ...product, quantity })
+const buildTransaction = (baseTransaction, product) => ({ ...baseTransaction, product })
+
 connection.once('open', async () => {
     console.log('connected');
     try {
@@ -45,19 +45,30 @@ connection.once('open', async () => {
         const createdProducts = await Product.create(mockProducts);
 
         const batch1 = [
-            buildInventory (createdProducts[1], 6),
-            buildInventory (createdProducts[2], 4),
-            buildInventory (createdProducts[4], 12)
+            buildInventory(createdProducts[0], 20),
+            buildInventory(createdProducts[1], 20),
+            buildInventory(createdProducts[2], 20),
+            buildInventory(createdProducts[3], 20),
+            buildInventory(createdProducts[4], 20)
         ];
         const batch2 = [
-            buildInventory (createdProducts[0], 4),
-            buildInventory (createdProducts[3], 12)
+            buildInventory(createdProducts[0], 4),
+            buildInventory(createdProducts[3], 12)
+        ];
+        const batch3 = [
+            buildInventory(createdProducts[1], 4),
+            buildInventory(createdProducts[2], 8),
+            buildInventory(createdProducts[4], 12)
         ];
 
         const transactions = await Transaction.create([
-            buildTransaction (mockTransactions[0], batch1),
-            buildTransaction (mockTransactions[1], batch2)
+            buildTransaction(mockTransactions[0], batch1),
+            buildTransaction(mockTransactions[1], batch2),
+            buildTransaction(mockTransactions[2], batch3)
         ]);
+        
+        console.log(createdProducts);
+        
         console.log('mock1');
         console.log(transactions[0].product);
         console.log('mock2');

@@ -34,27 +34,27 @@ module.exports = {
                 res.status(404).json({ message: 'No transaction with this id!' });
             }
 
-            await this.restoreTransaction();
-
             res.json(transaction);
         } catch (err) {
             res.status(500).json(err);
         }
     }, async addTransaction(req, res, operation) {
+        console.log(req.body, operation);
         try {
             const newTransaction = req.body;
             newTransaction.operation = operation;
             const transaction = await Transaction.create(newTransaction);
 
-            await this.restoreTransaction();
-
             res.json(transaction);
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
     async restoreTransaction() {
         try {
+            await Product.updateMany({}, { $set: { quantity: 0 } });
+
             const transactions = await Transaction.find().populate('product');           
 
             for (const transaction of transactions) {
@@ -76,9 +76,8 @@ module.exports = {
                     await existingProduct.save();
                 }
             }
-
             console.log('Product quantities updated successfully.');
-        } catch (error) {
+        } catch (error) {            
             console.error('Error updating product quantities:', error);
         }
     },
