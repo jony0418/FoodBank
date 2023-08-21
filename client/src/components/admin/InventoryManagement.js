@@ -63,13 +63,24 @@ function InventoryManagement() {
     }
   }; 
 
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}>
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
           <TableContainer>
             <Table variant='simple'>
               <Thead>
@@ -93,10 +104,10 @@ function InventoryManagement() {
                       <Link to={`/modifyitem/${product._id}`}>Modify</Link>
                     </Td>
                     <Td>
-                      <FaTrash 
-                      color='red' 
-                      cursor='pointer' 
-                      onClick={() => handleDelete(product._id)}
+                      <FaTrash
+                        color='red'
+                        cursor='pointer'
+                        onClick={() => handleDelete(product._id)}
                       />
                     </Td>
                   </Tr>
@@ -119,3 +130,4 @@ function InventoryManagement() {
 }
 
 export default InventoryManagement;
+

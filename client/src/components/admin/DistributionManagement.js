@@ -22,6 +22,7 @@ function Distribution() {
   const [productQuantity, setProductQuantity] = useState('');
   const [families, setFamilies] = useState('');
   const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
   const [suggestions, setSuggestions] = useState([]);
   const { data } = useQuery(FIND_PRODUCT);
 
@@ -81,14 +82,25 @@ function Distribution() {
     }
   };
 
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Flex flex="1" ml={4} p={5} bg={bg} borderRadius="md" direction="row">
-          <Box flex="1" p={5} bg={bg} borderRadius="md">
+        <Flex style={right} bg={bg} borderRadius="md" flex="1" color={color} direction="row">
+          <Box flex="1" bg={bg} borderRadius="md">
             <Text mb={4}>Add Products:</Text>
             <Input
               placeholder="Type product name"
@@ -122,7 +134,7 @@ function Distribution() {
               ))}
             </List>
           </Box>
-          <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
+          <Box flex="1" bg={bg} borderRadius="md">
             <Text mb={4}>Number of Families:</Text>
             <Input
               placeholder="Enter number of families"
