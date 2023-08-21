@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client'; // Import useMutation
 import { Box, Flex, Input, Button, Text, List, ListItem } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
+import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations"; // Update the import path
 
 function Distribution() {
+  const [updateProductQuantity] = useMutation(UPDATE_PRODUCT_QUANTITY);
+  const [createTransaction] = useMutation(CREATE_TRANSACTION);
   const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
@@ -16,6 +20,30 @@ function Distribution() {
       setProductName('');
       setProductQuantity('');
     }
+  };
+
+  const handleDistribute = async () => {
+    // Loop through products and update the quantity
+    for (const product of products) {
+      await updateProductQuantity({
+        variables: {
+          id: product.id, // Make sure to have the product ID
+          quantity: product.quantity,
+        },
+      });
+    }
+
+    // Create a new transaction
+    await createTransaction({
+      variables: {
+        input: {
+          product: products,
+          transaction_date: new Date(),
+          operation: 'Distribute',
+          // ... other fields
+        },
+      },
+    });
   };
 
   return (
@@ -58,6 +86,9 @@ function Distribution() {
               onChange={(e) => setFamilies(e.target.value)}
               type="number"
             />
+            <Button onClick={handleDistribute} mt={2}>
+              Distribute
+            </Button>
           </Box>
         </Flex>
       </Flex>

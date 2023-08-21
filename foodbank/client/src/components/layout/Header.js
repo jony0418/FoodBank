@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex, Link, Spacer, Text, useColorMode, IconButton, HStack } from '@chakra-ui/react';
-import { useNavigate, Link as ReactRouterLink, useLocation } from 'react-router-dom';
+import { Box, Flex, Link, Spacer, Text, useColorMode, IconButton, HStack, Image } from '@chakra-ui/react';
+import { useNavigate, Link as ReactRouterLink } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 function Header() {
@@ -22,10 +22,8 @@ function Header() {
 
   return (
     <Flex as="header" bg="primary" color="white" p={4} align="center" boxShadow="md">
-      <ReactRouterLink to="/dashboard" style={linkStyles}>
-        <Box borderRadius="full" bg="secondary" p={2}>
-          <Text fontSize="xl" fontWeight="bold">FoodBank</Text>
-        </Box>
+      <ReactRouterLink to="/dashboard" style={linkStyles}>   
+        <Image htmlHeight="200px" htmlWidth="200px" src='../../images/nbglogo.png' alt="logo" />
       </ReactRouterLink>
       <Spacer />
       <HStack spacing="30px">
