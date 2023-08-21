@@ -24,6 +24,7 @@ const SUBTRACT_PRODUCT_QUANTITY = gql`
 
 function RegisterProductOutput() {
   const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
   const [productName, setProductName] = useState('');
   const [outputQuantity, setOutputQuantity] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -64,12 +65,23 @@ function RegisterProductOutput() {
     }
   };
 
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
           <Input
             placeholder="Type product name"
             value={productName}
