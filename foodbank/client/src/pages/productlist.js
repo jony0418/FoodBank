@@ -25,23 +25,16 @@ function ProductList() {
         <Table variant='simple'>
           <Thead>
             <Tr>
-              <Th>Id</Th>
               <Th>Name</Th>
               <Th>Quantity</Th>
               <Th>Description</Th>
-              <Th>Category</Th>
-              {/* <Th>Modify Item</Th>
-              <Th>Delete Item</Th> New column */}
+              <Th>Modify Item</Th>
+              <Th>Delete Item</Th> 
             </Tr>
           </Thead>
           <Tbody>
             {products.map ((product,i)=>(
               <Tr> 
-                <Td>
-                <Link to={`/modifyitem/${product._id}`}>
-                  {product._id}
-                  </Link>
-                </Td>
                 <Td>
                   {product.name}
                 </Td>
@@ -52,47 +45,13 @@ function ProductList() {
                   {product.description}
                 </Td>
                 <Td>
-                  {product.category.name}
+                <Link to={`/modifyitem/${product._id}`}>
+                  Modify
+                </Link>
                 </Td>
               </Tr>
             ))}
-            {/* <Tr>
-              <Td>Apple</Td>
-              <Td>Green apples</Td>
-              <Td>Image here</Td>
-              <Td>10</Td>
-              <Td>Fruit</Td>
-              <Td>
-                <Link to='/modifyitem'>Modify</Link>
-              </Td>
-              <Td>
-              <FaTrash color='red' cursor='pointer' />              </Td>
-            </Tr>
-            <Tr>
-            <Td>Rice</Td>
-            <Td>Brown rice</Td>
-            <Td>Image here</Td>
-            <Td>7</Td>
-            <Td>Legumes</Td>
-            <Td>
-                <Link to='/modifyitem'>Modify</Link>
-              </Td>
-              <Td>
-              <FaTrash color='red' cursor='pointer' />              </Td>
-            </Tr>
-            <Tr>
-            <Td>Canned beans</Td>
-            <Td>Pinto beans in a can</Td>
-            <Td>Image here</Td>
-            <Td>10</Td>
-            <Td>Legumes</Td>
-              <Td>
-                <Link to='/modifyitem'>Modify</Link>
-              </Td>
-              <Td>
-              <FaTrash color='red' cursor='pointer' />              </Td>
-              </Tr> */}
-            {/* ... Other rows ... */}
+           
           </Tbody>
         </Table>
       </TableContainer>
@@ -107,4 +66,3 @@ function ProductList() {
 }
 
 export default ProductList;
-

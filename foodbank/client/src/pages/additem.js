@@ -44,14 +44,26 @@ function AddItem() {
       const { data } = await addProduct({
         variables: {
           ...inputValues,
-          quantity: parseInt(inputValues.quantity), // Convert quantity to integer
+          quantity: parseInt(inputValues.quantity), 
         },
       });
+
+      setInputValues({
+        name: '',
+        description: '',
+        image: '',
+        quantity: '', 
+        category: '',
+
+      }); 
       console.log('Product added:', data.addProduct);
     } catch (error) {
       console.error('Error adding product:', error);
     }
+
+
   };
+
 
   const buttonStyle = {
     width: '100px',
