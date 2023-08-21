@@ -8,15 +8,26 @@ function Sidebar() {
     const hoverBg = useColorModeValue("gray.200", "gray.600");
     const color = useColorModeValue("gray.700", "gray.200");
 
+    const left = {
+        padding: "10px",
+        flex: "10%"
+    }
+
     return (
         <VStack 
-            as="aside" 
-            bg={bg} 
+            as="aside"
+            style={left} 
+            bg={bg}
             p={4} 
-            spacing={4} 
+            spacing={7} 
             align="center" // Align icons to the center
-            width="60px" // Reduced width to fit the icons
-            boxShadow="md"
+            boxShadow="md"             
+            minWidth={[
+                '100%', // 0-30em
+                '70%', // 30em-48em
+                '25%', // 48em-62em
+                '15%', // 62em+
+            ]}
         >
             <Tooltip label="Dashboard" placement="right">
                 <Link 
@@ -24,6 +35,7 @@ function Sidebar() {
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
                     w="100%"
+                    mt={10}
                     display="flex"
                     alignItems="center"
                     justifyContent="center" // Center the icon

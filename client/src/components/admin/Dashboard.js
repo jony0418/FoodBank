@@ -63,12 +63,24 @@ function Dashboard() {
   const totalCategories = data.categories.length;
   const totalQuantity = data.products.reduce((sum, product) => sum + product.quantity, 0);
 
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px",
+    textAlign: "center"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
+        <Box style={right} bg={bg} borderRadius="md" flex="1">
           <Stack spacing={5}>
             <Flex justify="space-between">
               <Stat>
@@ -105,3 +117,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
