@@ -6,16 +6,20 @@ import Auth from '../utils/auth';
 function Header() {
   const { toggleColorMode } = useColorMode();
   const navigate = useNavigate();
+  const location = useLocation(); 
+
   const handleLogout = () => {
     Auth.logout();
     navigate('/');
   };
+
   const linkStyles = {
     textDecoration: 'none',
     _hover: {
       textDecoration: 'none',
     },
   };
+
   return (
     <Flex as="header" bg="primary" color="white" p={4} align="center" boxShadow="md">
       <ReactRouterLink to="/dashboard" style={linkStyles}>   
@@ -23,11 +27,11 @@ function Header() {
       </ReactRouterLink>
       <Spacer />
       <HStack spacing="30px">
-        <ReactRouterLink mx={2} to="/" color="quaternary">Home</ReactRouterLink>
-        {/* ... other navigation links */}
+        {location.pathname !== '/dashboard' && (
+          <ReactRouterLink mx={2} to="/dashboard" color="quaternary">Home</ReactRouterLink>
+        )}
         {Auth.loggedIn() && (
           <>
-            <ReactRouterLink mx={2} onClick={handleLogout} color="quaternary">Log Out</ReactRouterLink>
             <Link mx={2} onClick={handleLogout} color="quaternary">Log Out</Link>
           </>
         )}

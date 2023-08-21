@@ -53,7 +53,6 @@ function Sidebar() {
             >
                 Distribution Management
             </Link>
-
             {/* ... other sidebar links */}
         </VStack>
     );
