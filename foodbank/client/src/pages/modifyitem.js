@@ -4,9 +4,7 @@ import { InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
 import Footer from '../components/layout/Footer';
-import { modifyProduct } from '../components/utils/mutations'; // Make sure to update the path
-
-// Define the query to get the product by name
+import { modifyProduct } from '../components/utils/mutations';
 const GET_PRODUCT_BY_NAME = gql`
   query GetProductByName($name: String!) {
     product(name: $name) {
