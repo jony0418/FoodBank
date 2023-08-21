@@ -1,56 +1,36 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation, gql } from '@apollo/client';
-import { InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui/react';
-import Header from '../components/layout/Header';
-import Sidebar from '../components/layout/Sidebar';
-import Footer from '../components/layout/Footer';
-import { modifyProduct } from '../components/utils/mutations'; // Make sure to update the path
+import { useMutation } from '@apollo/client'; 
+import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex } from '@chakra-ui/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_PRODUCT } from '../components/utils/queries';
+import { updateProduct } from '../components/utils/mutations'; 
 
-// Define the query to get the product by name
-const GET_PRODUCT_BY_NAME = gql`
-  query GetProductByName($name: String!) {
-    product(name: $name) {
-      _id
-      name
-      description
-      image
-      quantity
-      category
-    }
-  }
-`;
 
 function ModifyItem() {
+
+  const location= useLocation()
+  const navigate = useNavigate(); 
+  const productId = location.state.productId;
+  const [updateProductMutation] = useMutation(updateProduct); 
+
+  const {loading, data} = useQuery(GET_PRODUCT, {
+    variables: {
+      productId: productId,
+    },
+  }); 
+
+  const product = data?.product || {};
+
   const inputLeftAddonStyle = {
-    width: '150px',
+    width: '150px', // Adjust the width as needed
   };
 
-  const [searchName, setSearchName] = useState('');
   const [inputValues, setInputValues] = useState({
-    id: '',
-    name: '',
-    description: '',
-    image: '',
-    quantity: '',
-    category: '',
+    name: product.name || '',
+    description: product.description || '',
+    quantity: product.quantity || '',
   });
-
-  const { loading, error, data } = useQuery(GET_PRODUCT_BY_NAME, {
-    variables: { name: searchName },
-    skip: !searchName,
-  });
-
-  const [modifyProductMutation] = useMutation(modifyProduct);
-
-  const handleSearchChange = (e) => {
-    setSearchName(e.target.value);
-  };
-
-  const handleSearchClick = () => {
-    if (data && data.product) {
-      setInputValues(data.product);
-    }
-  };
 
   const handleInputChange = (fieldName, value) => {
     setInputValues((prevValues) => ({
@@ -61,55 +41,64 @@ function ModifyItem() {
 
   const handleModifyItem = async () => {
     try {
-      const { data } = await modifyProductMutation({
+      const { data } = await updateProductMutation({
         variables: {
-          ...inputValues,
+          productId: productId,
+          description: inputValues.description,
+          name: inputValues.name,
           quantity: parseInt(inputValues.quantity),
         },
-      });
-      console.log('Product modified:', data.modifyProduct);
+      }); 
+      
+      console.log('Input values:', inputValues);
+
+      window.location.replace('/productlist'); 
     } catch (error) {
-      console.error('Error modifying product:', error);
+      console.error('Mutation error:', error); 
     }
+
   };
 
   const buttonStyle = {
-    width: '100px',
+    width: '100px', // Adjust the width as needed
   };
 
   return (
-    <Flex direction="column" minHeight="100vh">
-      <Header />
-
-      <Flex as="main" flex="1" p={4}>
-        <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
-          <InputGroup>
-            <InputLeftAddon children='Search by Name' />
-            <Input
-              placeholder='Product name'
-              value={searchName}
-              onChange={handleSearchChange}
-            />
-            <Button onClick={handleSearchClick}>Search</Button>
-          </InputGroup>
-
-          {loading && <p>Loading...</p>}
-          {error && <p>Error: {error.message}</p>}
-
-          {/* Add InputGroup components for other fields here */}
-          {/* ... */}
-
-          <Flex justifyContent="center">
-            <Button size="sm" colorScheme="green" style={buttonStyle} onClick={handleModifyItem}>
-              Modify Item
-            </Button>
-          </Flex>
-        </Box>
+    <Stack spacing={4}>
+      <InputGroup>
+        <InputLeftAddon style={inputLeftAddonStyle} children='Name' />
+        <Input
+          placeholder={product.name}
+          value={inputValues.name}
+          onChange={(e) => handleInputChange('name', e.target.value)}
+        />
+      </InputGroup>
+      <InputGroup>
+        <InputLeftAddon style={inputLeftAddonStyle} children='Description' />
+        <Input
+          placeholder={product.description}
+          value={inputValues.description}
+          onChange={(e) => handleInputChange('description', e.target.value)}
+        />
+      </InputGroup>
+      <InputGroup>
+        <InputLeftAddon style={inputLeftAddonStyle} children='Quantity' />
+        <Input
+          placeholder={product.quantity}
+          value={inputValues.quantity}
+          onChange={(e) => handleInputChange('quantity', e.target.value)}
+        />
+      </InputGroup>
+      {/* Other input fields */}
+      <Flex justifyContent='center'>
+        <Button size='sm'
+         colorScheme='green' 
+         style={buttonStyle} 
+         onClick={handleModifyItem}>
+          Modify Item
+        </Button>
       </Flex>
-
-      <Footer />
-    </Flex>
+    </Stack>
   );
 }
 
