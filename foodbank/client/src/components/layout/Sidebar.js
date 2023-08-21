@@ -50,39 +50,7 @@ function Sidebar() {
             >
                 Distribution Management
             </Link>
-            <Link 
-                href="/modifyitem" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Modify Item
-            </Link>
-            <Link 
-                href="/additem" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Add Item
-            </Link>
-            <Link 
-                href="/productlist" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Product List
-            </Link>
+
             {/* ... other sidebar links */}
         </VStack>
     );
