@@ -21,7 +21,7 @@ function Distribution() {
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      
+
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
         <Flex flex="1" ml={4} p={5} bg="gray.100" borderRadius="md" direction="row">
@@ -61,7 +61,7 @@ function Distribution() {
           </Box>
         </Flex>
       </Flex>
-      
+
       <Footer />
     </Flex>
   );
