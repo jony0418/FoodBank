@@ -1,18 +1,19 @@
 import React from 'react';
-import { Box, Flex, Text, List, ListItem, Image, Container, Heading } from '@chakra-ui/react';
+import { Box, Flex, Text, List, ListItem, Image, Container, Heading, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 
 function AboutUs() {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
   return (
     <Flex direction="column" minHeight="100vh" minWidth="100vh">
       <Header />
 
       <Flex as="main" flex={1} p={4}>
         <Sidebar />
-        {/* <Container maxWidth={'full'}> */}
-        <Box flex={1} ml={4} p={5} bg="gray.100" borderRadius="md" maxWidth={'full'} minHeight={'full'}>
+        <Box flex={1} ml={4} p={5} bg={bg} borderRadius="md" maxWidth={'full'} minHeight={'full'} color={color}>
           <Container maxWidth={'70%'} mt={10}>
 
             <Heading as='h2' size='2xl'>About Us</Heading>
@@ -49,7 +50,6 @@ function AboutUs() {
             </Text>
           </Container>
         </Box>
-        {/* </Container> */}
         <Flex>
           <Image
             src={'../../images/foodbank-about.png'}

@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client';
-import { InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui/react';
+import { InputGroup, Input, InputLeftAddon, Button, Flex, Box, List, ListItem, useColorModeValue } from '@chakra-ui/react';
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
 import Footer from '../components/layout/Footer';
 import { modifyProduct } from '../components/utils/mutations';
+
+const GET_PRODUCTS = gql`
+  query GetProducts {
+    products {
+      name
+    }
+  }
+`;
+
 const GET_PRODUCT_BY_NAME = gql`
   query GetProductByName($name: String!) {
     product(name: $name) {
@@ -19,6 +28,9 @@ const GET_PRODUCT_BY_NAME = gql`
 `;
 
 function ModifyItem() {
+  const bg = useColorModeValue("white", "gray.800"); // Define background color
+  const color = useColorModeValue("gray.700", "gray.200"); // Define text color
+
   const inputLeftAddonStyle = {
     width: '150px',
   };
@@ -39,17 +51,33 @@ function ModifyItem() {
   });
 
   const [modifyProductMutation] = useMutation(modifyProduct);
+  const [suggestions, setSuggestions] = useState([]);
+  const { loading: loadingProducts, data: productsData } = useQuery(GET_PRODUCTS);
 
   const handleSearchChange = (e) => {
-    setSearchName(e.target.value);
+    const value = e.target.value;
+    setSearchName(value);
+
+    if (value && productsData) {
+      const filteredProducts = productsData.products.filter((product) =>
+        product.name.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setSuggestions(filteredProducts.map((product) => product.name));
+    } else {
+      setSuggestions([]);
+    }
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    setSearchName(suggestion);
+    setSuggestions([]);
+  };
+  
   const handleSearchClick = () => {
     if (data && data.product) {
       setInputValues(data.product);
     }
   };
-
   const handleInputChange = (fieldName, value) => {
     setInputValues((prevValues) => ({
       ...prevValues,
@@ -81,7 +109,7 @@ function ModifyItem() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}>
           <InputGroup>
             <InputLeftAddon children='Search by Name' />
             <Input
@@ -92,17 +120,62 @@ function ModifyItem() {
             <Button onClick={handleSearchClick}>Search</Button>
           </InputGroup>
 
+          {suggestions.length > 0 && (
+            <List>
+              {suggestions.map((suggestion, index) => (
+                <ListItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                  {suggestion}
+                </ListItem>
+              ))}
+            </List>
+          )}
+
+          {data && data.product && (
+            <Box mt={4}>
+              <InputGroup>
+                <InputLeftAddon children='Name' />
+                <Input
+                  value={inputValues.name}
+                  onChange={(e) => handleInputChange('name', e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup mt={2}>
+                <InputLeftAddon children='Description' />
+                <Input
+                  value={inputValues.description}
+                  onChange={(e) => handleInputChange('description', e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup mt={2}>
+                <InputLeftAddon children='Image' />
+                <Input
+                  value={inputValues.image}
+                  onChange={(e) => handleInputChange('image', e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup mt={2}>
+                <InputLeftAddon children='Quantity' />
+                <Input
+                  value={inputValues.quantity}
+                  onChange={(e) => handleInputChange('quantity', e.target.value)}
+                  type="number"
+                />
+              </InputGroup>
+              <InputGroup mt={2}>
+                <InputLeftAddon children='Category' />
+                <Input
+                  value={inputValues.category}
+                  onChange={(e) => handleInputChange('category', e.target.value)}
+                />
+              </InputGroup>
+              <Button mt={2} onClick={handleModifyItem}>
+                Modify Item
+              </Button>
+            </Box>
+          )}
+
           {loading && <p>Loading...</p>}
           {error && <p>Error: {error.message}</p>}
-
-          {/* Add InputGroup components for other fields here */}
-          {/* ... */}
-
-          <Flex justifyContent="center">
-            <Button size="sm" colorScheme="green" style={buttonStyle} onClick={handleModifyItem}>
-              Modify Item
-            </Button>
-          </Flex>
         </Box>
       </Flex>
 

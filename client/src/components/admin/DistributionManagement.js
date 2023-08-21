@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client'; // Import useMutation
-import { Box, Flex, Input, Button, Text, List, ListItem } from '@chakra-ui/react';
+import { useQuery, useMutation, gql } from '@apollo/client';
+import { Box, Flex, Input, Button, Text, List, ListItem, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
-import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations"; // Update the import path
+import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations";
+
+const FIND_PRODUCT = gql`
+  query GetProducts {
+    products {
+      name
+    }
+  }
+`;
 
 function Distribution() {
   const [updateProductQuantity] = useMutation(UPDATE_PRODUCT_QUANTITY);
@@ -13,6 +21,28 @@ function Distribution() {
   const [productName, setProductName] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
   const [families, setFamilies] = useState('');
+  const bg = useColorModeValue("white", "gray.800");
+  const [suggestions, setSuggestions] = useState([]);
+  const { data } = useQuery(FIND_PRODUCT);
+
+  const handleProductNameChange = (e) => {
+    const value = e.target.value;
+    setProductName(value);
+
+    if (value && data) {
+      const filteredProducts = data.products.filter((product) =>
+        product.name.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setSuggestions(filteredProducts.map((product) => product.name));
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setProductName(suggestion);
+    setSuggestions([]);
+  };
 
   const handleAddProduct = () => {
     if (productName && productQuantity) {
@@ -23,27 +53,32 @@ function Distribution() {
   };
 
   const handleDistribute = async () => {
-    // Loop through products and update the quantity
+    // Loop through products, multiply by the number of families, and update the quantity
     for (const product of products) {
+      const totalQuantity = product.quantity * families;
+
+      // Update the product's quantity
       await updateProductQuantity({
         variables: {
-          id: product.id, // Make sure to have the product ID
-          quantity: product.quantity,
+          id: product.id,
+          quantity: totalQuantity,
+        },
+      });
+
+      // Create a new transaction
+      await createTransaction({
+        variables: {
+          input: {
+            product: product,
+            transaction_date: new Date(),
+            purpose: 'out',
+            batch: totalQuantity.toString(),
+            batchSize: totalQuantity.toString(),
+            operation: 'Distribute',
+          },
         },
       });
     }
-
-    // Create a new transaction
-    await createTransaction({
-      variables: {
-        input: {
-          product: products,
-          transaction_date: new Date(),
-          operation: 'Distribute',
-          // ... other fields
-        },
-      },
-    });
   };
 
   return (
@@ -52,14 +87,23 @@ function Distribution() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Flex flex="1" ml={4} p={5} bg="gray.100" borderRadius="md" direction="row">
-          <Box flex="1" p={5} bg="gray.100" borderRadius="md">
+        <Flex flex="1" ml={4} p={5} bg={bg} borderRadius="md" direction="row">
+          <Box flex="1" p={5} bg={bg} borderRadius="md">
             <Text mb={4}>Add Products:</Text>
             <Input
               placeholder="Type product name"
               value={productName}
-              onChange={(e) => setProductName(e.target.value)}
+              onChange={handleProductNameChange}
             />
+            {suggestions.length > 0 && (
+              <List>
+                {suggestions.map((suggestion, index) => (
+                  <ListItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                    {suggestion}
+                  </ListItem>
+                ))}
+              </List>
+            )}
             <Input
               placeholder="Enter product quantity"
               value={productQuantity}
@@ -78,7 +122,7 @@ function Distribution() {
               ))}
             </List>
           </Box>
-          <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+          <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
             <Text mb={4}>Number of Families:</Text>
             <Input
               placeholder="Enter number of families"

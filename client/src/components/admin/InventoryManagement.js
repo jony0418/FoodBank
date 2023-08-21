@@ -12,6 +12,7 @@ import {
   Button,
   Flex,
   Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
@@ -40,9 +41,10 @@ const DELETE_PRODUCT = gql`
   }
 `;
 
-
-
 function InventoryManagement() {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
+
   const { loading, error, data } = useQuery(GET_PRODUCTS);
   const [deleteProduct] = useMutation(DELETE_PRODUCT); 
 
@@ -67,7 +69,7 @@ function InventoryManagement() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}>
           <TableContainer>
             <Table variant='simple'>
               <Thead>
