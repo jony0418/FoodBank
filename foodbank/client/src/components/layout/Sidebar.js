@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, Link, Link as ReactRouterLink, useColorModeValue } from '@chakra-ui/react';
+import { VStack, Link, useColorModeValue } from '@chakra-ui/react';
 
 function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
@@ -17,7 +17,6 @@ function Sidebar() {
             boxShadow="md"
         >
             <Link 
-                as={ReactRouterLink}
                 href="/dashboard" 
                 color={color}
                 _hover={{ background: hoverBg, borderRadius: 'md' }}
@@ -29,7 +28,6 @@ function Sidebar() {
                 Dashboard
             </Link>
             <Link 
-                as={ReactRouterLink}
                 href="/inventory" 
                 color={color}
                 _hover={{ background: hoverBg, borderRadius: 'md' }}
@@ -50,39 +48,6 @@ function Sidebar() {
                 alignItems="center"
             >
                 Distribution Management
-            </Link>
-            <Link
-                href="/modifyitem" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Modify Item
-            </Link>
-            <Link 
-                href="/additem" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Add Item
-            </Link>
-            <Link 
-                href="/productlist" 
-                color={color}
-                _hover={{ background: hoverBg, borderRadius: 'md' }}
-                p={2}
-                w="100%"
-                display="flex"
-                alignItems="center"
-            >
-                Product List
             </Link>
             {/* ... other sidebar links */}
         </VStack>
