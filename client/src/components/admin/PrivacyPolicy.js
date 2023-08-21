@@ -1,17 +1,20 @@
 import React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 
 function PrivacyPolicy() {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}>
           <Text fontSize="xl" fontWeight="bold">Privacy Policy</Text>
           <Text mt={4}>
             Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.

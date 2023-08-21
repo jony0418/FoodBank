@@ -1,17 +1,20 @@
 import React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react'; // Import useColorModeValue
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 
 function TermsOfService() {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
+  
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}> {/* Apply the bg and color */}
           <Text fontSize="xl" fontWeight="bold">Terms of Service</Text>
           <Text mt={4}>
             Welcome to FoodBank. These Terms of Service govern your use of our services. Please read these Terms carefully.

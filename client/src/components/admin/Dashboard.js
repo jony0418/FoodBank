@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
 import {
   Box,
   Flex,
@@ -10,6 +11,7 @@ import {
   List,
   ListItem,
   ListIcon,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   LineChart,
@@ -26,80 +28,77 @@ import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
 
-const data = [
-  { name: "Jan", donations: 400 },
-  { name: "Feb", donations: 300 },
-  // ... other months
-];
-
-//Donations line chart
-function DonationsChart() {
-  return (
-    <LineChart width={500} height={300} data={data}>
-      <Line type="monotone" dataKey="donations" stroke="#8884d8" />
-      <CartesianGrid stroke="#ccc" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-    </LineChart>
-  );
-}
-
-//Recent activities
-function RecentActivities() {
-  return (
-    <List spacing={3}>
-      <ListItem>
-        <ListIcon as={MdCheckCircle} color="green.500" />
-        New donation received from
-      </ListItem>
-      {/* ... other activities */}
-    </List>
-  );
-}
+const DASHBOARD_DATA = gql`
+  query GetDashboardData {
+    products {
+      name
+      quantity
+    }
+    categories {
+      name
+      products {
+        name
+        quantity
+      }
+    }
+  }
+`;
 
 function Dashboard() {
+  const { loading, error, data } = useQuery(DASHBOARD_DATA);
   const navigate = useNavigate();
+  const bg = useColorModeValue("white", "gray.800");
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
       console.log("error");
       navigate("/");
-      // navigate('/register');
     }
   }, [navigate]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const totalProducts = data.products.length;
+  const totalCategories = data.categories.length;
+  const totalQuantity = data.products.reduce((sum, product) => sum + product.quantity, 0);
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
           <Stack spacing={5}>
             <Flex justify="space-between">
               <Stat>
-                <StatLabel>Total Donations</StatLabel>
-                <StatNumber>$1,234</StatNumber>
-                <StatHelpText>Since last month</StatHelpText>
+                <StatLabel>Total Products</StatLabel>
+                <StatNumber>{totalProducts}</StatNumber>
+                <StatHelpText>Available in inventory</StatHelpText>
               </Stat>
               <Stat>
-                <StatLabel>Inventory Items</StatLabel>
-                <StatNumber>567</StatNumber>
-                <StatHelpText>10 new items</StatHelpText>
+                <StatLabel>Total Categories</StatLabel>
+                <StatNumber>{totalCategories}</StatNumber>
+                <StatHelpText>Product categories</StatHelpText>
               </Stat>
               <Stat>
-                <StatLabel>Families Served</StatLabel>
-                <StatNumber>89</StatNumber>
-                <StatHelpText>Since last week</StatHelpText>
+                <StatLabel>Total Quantity</StatLabel>
+                <StatNumber>{totalQuantity}</StatNumber>
+                <StatHelpText>Total kg in stock</StatHelpText>
               </Stat>
             </Flex>
-            <DonationsChart />
-            <RecentActivities />
+            {/* You can add a chart here if needed */}
+            <List spacing={3}>
+              {data.products.map((product) => (
+                <ListItem key={product.name}>
+                  <ListIcon as={MdCheckCircle} color="green.500" />
+                  {product.name} - Quantity: {product.quantity}
+                </ListItem>
+              ))}
+            </List>
           </Stack>
         </Box>
       </Flex>
-
       <Footer />
     </Flex>
   );

@@ -59,9 +59,6 @@ export const findproduct = gql`
       description
       image
       quantity
-      category {
-        name
-      }
     }
   }
 `;
