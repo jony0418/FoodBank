@@ -1,0 +1,55 @@
+{
+    "name": "client",
+    "version": "1.0.0",
+    "private": true,
+    "proxy": "http://localhost:3001/",
+    "dependencies": {
+        "@apollo/client": "^3.3.7",
+        "@chakra-ui/react": "^1.0.0",
+        "@emotion/react": "^11.0.0",
+        "@emotion/styled": "^11.0.0",
+        "@stripe/react-stripe-js": "^2.1.2",
+        "@stripe/stripe-js": "^1.54.2",
+        "@testing-library/jest-dom": "^4.2.4",
+        "@testing-library/react": "^9.5.0",
+        "@testing-library/user-event": "^7.2.1",
+        "apollo-boost": "^0.4.9",
+        "chakra-dayzed-datepicker": "^0.2.9",
+        "date-fns": "^2.30.0",
+        "dayzed": "^3.2.3",
+        "framer-motion": "^4.0.0",
+        "graphql": "^15.4.0",
+        "jwt-decode": "^2.2.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-icons": "^4.10.1",
+        "react-router-dom": "^6.2.1",
+        "react-scripts": "5.0.1",
+        "recharts": "^2.7.3"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint": "^8.47.0",
+        "eslint-plugin-react": "^7.33.1"
+    }
+}
