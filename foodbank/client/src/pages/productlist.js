@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { gql } from '@apollo/client';
 import {
   Table,
@@ -31,11 +31,35 @@ query {
   }
 `;
 
+//import mutation for deleting a product
+const DELETE_PRODUCT = gql`
+  mutation DeleteProduct($id: ID!) {   
+    deleteProduct(id: $id) {
+      _id
+    }
+  }
+`;
+
+
+
 function ProductList() {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const [deleteProduct] = useMutation(DELETE_PRODUCT); 
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
+  //handle product delete using mutation
+  const handleDelete = async (productId) => {
+    try {
+      await deleteProduct({
+        variables: { id: productId },
+        refetchQueries: [{ query: GET_PRODUCTS }],
+      }); 
+    } catch (err) {
+      console.error(err); 
+    }
+  }; 
 
   return (
     <Flex direction="column" minHeight="100vh">
@@ -67,7 +91,11 @@ function ProductList() {
                       <Link to={`/modifyitem/${product._id}`}>Modify</Link>
                     </Td>
                     <Td>
-                      <FaTrash color='red' cursor='pointer' />
+                      <FaTrash 
+                      color='red' 
+                      cursor='pointer' 
+                      onClick={() => handleDelete(product._id)}
+                      />
                     </Td>
                   </Tr>
                 ))}
