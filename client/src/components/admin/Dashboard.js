@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   ListIcon,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import {
   LineChart,
@@ -60,6 +61,7 @@ function RecentActivities() {
 
 function Dashboard() {
   const navigate = useNavigate();
+  const bg = useColorModeValue("white", "gray.800");
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
@@ -75,7 +77,7 @@ function Dashboard() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
           <Stack spacing={5}>
             <Flex justify="space-between">
               <Stat>

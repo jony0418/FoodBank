@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { gql } from '@apollo/client';
-import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex, Box } from '@chakra-ui/react';
+import { Stack, InputGroup, Input, InputLeftAddon, Button, Flex, Box, useColorModeValue } from '@chakra-ui/react'; // Import useColorModeValue
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
 import Footer from '../components/layout/Footer';
@@ -19,6 +19,8 @@ const ADD_PRODUCT = gql`
 `;
 
 function AddItem() {
+  const bg = useColorModeValue("gray.100", "gray.800"); // Define background color
+  const color = useColorModeValue("gray.700", "gray.200"); // Define text color
   const inputLeftAddonStyle = {
     width: '150px',
   };
@@ -75,7 +77,7 @@ function AddItem() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color}> {/* Apply the bg and color */}
           <Stack spacing={4}>
             <InputGroup>
               <InputLeftAddon style={inputLeftAddonStyle} children='Name' />

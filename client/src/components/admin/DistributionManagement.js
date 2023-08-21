@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client'; // Import useMutation
-import { Box, Flex, Input, Button, Text, List, ListItem } from '@chakra-ui/react';
+import { useMutation } from '@apollo/client';
+import { Box, Flex, Input, Button, Text, List, ListItem, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
-import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations"; // Update the import path
+import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations";
 
 function Distribution() {
   const [updateProductQuantity] = useMutation(UPDATE_PRODUCT_QUANTITY);
@@ -13,6 +13,7 @@ function Distribution() {
   const [productName, setProductName] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
   const [families, setFamilies] = useState('');
+  const bg = useColorModeValue("white", "gray.800");
 
   const handleAddProduct = () => {
     if (productName && productQuantity) {
@@ -27,7 +28,7 @@ function Distribution() {
     for (const product of products) {
       await updateProductQuantity({
         variables: {
-          id: product.id, // Make sure to have the product ID
+          id: product.id,
           quantity: product.quantity,
         },
       });
@@ -40,7 +41,6 @@ function Distribution() {
           product: products,
           transaction_date: new Date(),
           operation: 'Distribute',
-          // ... other fields
         },
       },
     });
@@ -52,8 +52,8 @@ function Distribution() {
 
       <Flex as="main" flex="1" p={4}>
         <Sidebar />
-        <Flex flex="1" ml={4} p={5} bg="gray.100" borderRadius="md" direction="row">
-          <Box flex="1" p={5} bg="gray.100" borderRadius="md">
+        <Flex flex="1" ml={4} p={5} bg={bg} borderRadius="md" direction="row">
+          <Box flex="1" p={5} bg={bg} borderRadius="md">
             <Text mb={4}>Add Products:</Text>
             <Input
               placeholder="Type product name"
@@ -78,7 +78,7 @@ function Distribution() {
               ))}
             </List>
           </Box>
-          <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+          <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
             <Text mb={4}>Number of Families:</Text>
             <Input
               placeholder="Enter number of families"
