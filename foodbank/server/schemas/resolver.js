@@ -58,14 +58,17 @@ const resolvers = {
             const category = await Category.create({ name }); 
             return category; 
         },
-        addProduct: async (parent, { name, description, quantity, categoryId}) => {
+        addProduct: async (parent, { name, description, image, quantity, categoryId }) => {
+            let category = null;
             
-            const category = await Category.findById(categoryId); 
-            
-            if (!category) {
-                throw new Error('Category not found'); 
+            if (categoryId) {
+              category = await Category.findById(categoryId);
+              
+              if (!category) {
+                throw new Error(`Category not found for ID: ${categoryId}`);
+              }
             }
-
+          
             const product = await Product.create({
                 name,
                 description,

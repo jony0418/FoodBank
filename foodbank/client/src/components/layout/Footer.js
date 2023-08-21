@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Text, Spacer, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Text, Spacer, useColorModeValue, HStack } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom'; 
 
 function Footer() {
@@ -22,11 +22,10 @@ function Footer() {
 
             <Spacer />
 
-            <Box>
+            <HStack spacing="30px">
                 <ReactRouterLink to="/privacy" mx={2}>Privacy Policy</ReactRouterLink>
                 <ReactRouterLink to="/terms" mx={2}>Terms of Service</ReactRouterLink>
-                <ReactRouterLink to="/aboutus" mx={2}>About Us</ReactRouterLink>
-            </Box>
+            </HStack>
         </Flex>
     );
 }
