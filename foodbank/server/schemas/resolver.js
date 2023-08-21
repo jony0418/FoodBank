@@ -83,7 +83,7 @@ const resolvers = {
         },
         deleteProduct: async (parent, { id }) => {
             return await Product.findOneAndDelete({ _id: id } )
-        }
+        },
     },
 }; 
 
