@@ -17,6 +17,7 @@ import TermsOfService from './components/admin/TermsOfService';
 import DistributionReport from "./pages/DistributionReportPage";
 import Distribution from "./components/admin/DistributionManagement";
 import AboutUs from './components/admin/AboutUs';
+import Inventory from "./components/admin/InventoryManagement";
 
 
 const httpLink = createHttpLink({
@@ -53,6 +54,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/distribution" element={<Distribution />} />
+              <Route path="/inventory" element={<Inventory />} />
               <Route path="/BoM" element={<BoM />} />
               <Route
                 path="/distributionreport"
