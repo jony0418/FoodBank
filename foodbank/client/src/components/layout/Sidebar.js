@@ -1,5 +1,6 @@
 import React from 'react';
 import { VStack, Link, useColorModeValue } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
@@ -17,36 +18,38 @@ function Sidebar() {
             boxShadow="md"
         >
             <Link 
-                href="/dashboard" 
+                //href="/dashboard" 
                 color={color}
                 _hover={{ background: hoverBg, borderRadius: 'md' }}
                 p={2}
                 w="100%"
                 display="flex"
                 alignItems="center"
+                as={ReactRouterLink} to='/dashboard'
             >
                 Dashboard
             </Link>
             <Link 
-                href="/inventory" 
+                //href="/inventory" 
                 color={color}
                 _hover={{ background: hoverBg, borderRadius: 'md' }}
                 p={2}
                 w="100%"
                 display="flex"
                 alignItems="center"
-                //as={ReactRouterLink} to='/register'
+                as={ReactRouterLink} to='/inventory'
             >
                 Inventory Management
             </Link>
             <Link 
-                href="/distribution" 
+                //href="/distribution" 
                 color={color}
                 _hover={{ background: hoverBg, borderRadius: 'md' }}
                 p={2}
                 w="100%"
                 display="flex"
                 alignItems="center"
+                as={ReactRouterLink} to='/distribution'
             >
                 Distribution Management
             </Link>
