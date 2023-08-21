@@ -1,10 +1,11 @@
 import Header from "../components/layout/Header";
-import FormDistribution from "../components/distribution/FormDistribition";
+import FormDistribution from "../hooks/FormDistribition";
 import Footer from "../components/layout/Footer";
 import Sidebar from "../components/layout/Sidebar";
-import { Grid, Flex, Square, Box, Text } from "@chakra-ui/react";
 
-function Matchup() {
+import { Flex, Box } from "@chakra-ui/react";
+
+function DistributionRequest() {
   return (
     <>
       <Header />
@@ -21,4 +22,4 @@ function Matchup() {
   );
 }
 
-export default Matchup;
+export default DistributionRequest;
