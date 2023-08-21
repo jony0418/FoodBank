@@ -67,6 +67,30 @@ To successfully install this proyect follow the guideline:
 
    `npm i`
 
+## User Story
+
+```
+Dashboard and Overview
+
+Given that I am an authorized user of the food bank platform,
+When I log in to the platform with my credentials,
+Then I should be directed to the dashboard that provides an overview of the current recent distribution activities, and relevant statistics through graphical representations.
+
+ Adding Products to Inventory
+
+Given that I am on the dashboard,
+When I select the "Add New Product" option,
+Then I should be able to input details such as product name, and quantity.
+And upon submission, the product should be added to the inventory.
+
+Tracking Distribution History
+
+Given that I am on the dashboard,
+When I navigate to the "Distribution History" section,
+Then I should see a chronological list of all distribution activities, including product details,
+
+```
+
 ## 📈 Usage
 
 To begin using this application follow the next steps:
