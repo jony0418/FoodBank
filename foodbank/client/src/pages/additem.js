@@ -47,10 +47,20 @@ function AddItem() {
           quantity: parseInt(inputValues.quantity), 
         },
       });
+
+      setInputValues({
+        name: '',
+        description: '',
+        image: '',
+        quantity: '', 
+        category: '',
+
+      }); 
       console.log('Product added:', data.addProduct);
     } catch (error) {
       console.error('Error adding product:', error);
     }
+
 
   };
 

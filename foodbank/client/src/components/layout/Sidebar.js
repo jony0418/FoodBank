@@ -35,7 +35,6 @@ function Sidebar() {
                 w="100%"
                 display="flex"
                 alignItems="center"
-                //as={ReactRouterLink} to='/register'
             >
                 Inventory Management
             </Link>
@@ -50,7 +49,6 @@ function Sidebar() {
             >
                 Distribution Management
             </Link>
-
             {/* ... other sidebar links */}
         </VStack>
     );
