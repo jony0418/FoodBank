@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation, gql } from '@apollo/client';
 import { Box, Flex, Input, Button, Text, List, ListItem, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 import { UPDATE_PRODUCT_QUANTITY, CREATE_TRANSACTION } from "../utils/mutations";
+
+const FIND_PRODUCT = gql`
+  query GetProducts {
+    products {
+      name
+    }
+  }
+`;
 
 function Distribution() {
   const [updateProductQuantity] = useMutation(UPDATE_PRODUCT_QUANTITY);
@@ -14,6 +22,27 @@ function Distribution() {
   const [productQuantity, setProductQuantity] = useState('');
   const [families, setFamilies] = useState('');
   const bg = useColorModeValue("white", "gray.800");
+  const [suggestions, setSuggestions] = useState([]);
+  const { data } = useQuery(FIND_PRODUCT);
+
+  const handleProductNameChange = (e) => {
+    const value = e.target.value;
+    setProductName(value);
+
+    if (value && data) {
+      const filteredProducts = data.products.filter((product) =>
+        product.name.toLowerCase().startsWith(value.toLowerCase())
+      );
+      setSuggestions(filteredProducts.map((product) => product.name));
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setProductName(suggestion);
+    setSuggestions([]);
+  };
 
   const handleAddProduct = () => {
     if (productName && productQuantity) {
@@ -24,26 +53,32 @@ function Distribution() {
   };
 
   const handleDistribute = async () => {
-    // Loop through products and update the quantity
+    // Loop through products, multiply by the number of families, and update the quantity
     for (const product of products) {
+      const totalQuantity = product.quantity * families;
+
+      // Update the product's quantity
       await updateProductQuantity({
         variables: {
           id: product.id,
-          quantity: product.quantity,
+          quantity: totalQuantity,
+        },
+      });
+
+      // Create a new transaction
+      await createTransaction({
+        variables: {
+          input: {
+            product: product,
+            transaction_date: new Date(),
+            purpose: 'out',
+            batch: totalQuantity.toString(),
+            batchSize: totalQuantity.toString(),
+            operation: 'Distribute',
+          },
         },
       });
     }
-
-    // Create a new transaction
-    await createTransaction({
-      variables: {
-        input: {
-          product: products,
-          transaction_date: new Date(),
-          operation: 'Distribute',
-        },
-      },
-    });
   };
 
   return (
@@ -58,8 +93,17 @@ function Distribution() {
             <Input
               placeholder="Type product name"
               value={productName}
-              onChange={(e) => setProductName(e.target.value)}
+              onChange={handleProductNameChange}
             />
+            {suggestions.length > 0 && (
+              <List>
+                {suggestions.map((suggestion, index) => (
+                  <ListItem key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                    {suggestion}
+                  </ListItem>
+                ))}
+              </List>
+            )}
             <Input
               placeholder="Enter product quantity"
               value={productQuantity}

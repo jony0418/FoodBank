@@ -10,6 +10,11 @@ const mockProducts = [
     { name: 'Product C', description: 'Description for Product C', quantity: 30 },
     { name: 'Product D', description: 'Description for Product D', quantity: 15 },
     { name: 'Product E', description: 'Description for Product E', quantity: 25 },
+    { name: 'Product F', description: 'Description for Product F', quantity: 40 },
+    { name: 'Product G', description: 'Description for Product G', quantity: 50 },
+    { name: 'Product H', description: 'Description for Product H', quantity: 60 },
+    { name: 'Product I', description: 'Description for Product I', quantity: 35 },
+    { name: 'Product J', description: 'Description for Product J', quantity: 45 },
 ];
 const mockTransactions = [
     {
@@ -26,8 +31,24 @@ const mockTransactions = [
         batchSize: 'Large',
         operation: 'Distribute'
     },
+    // Additional transactions
+    {
+        transaction_date: new Date(),
+        purpose: 'Receive',
+        batch: 'Batch 3',
+        batchSize: 'Medium',
+        operation: 'Receive'
+    },
+    {
+        transaction_date: new Date(),
+        purpose: 'Distribute',
+        batch: 'Batch 4',
+        batchSize: 'Small',
+        operation: 'Distribute'
+    },
     // Add more transactions as needed
 ];
+
 /**
  * 
  * @param {*} product -test2 jsdoc

@@ -1,7 +1,7 @@
 import React from 'react';
 import { VStack, Link, useColorModeValue, Icon, Tooltip } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { MdDashboard, MdInventory, MdLocalShipping } from 'react-icons/md';
+import { MdDashboard, MdInventory, MdLocalShipping, MdOutlineModeEdit, MdOutlineInput, MdOutlineOutput } from 'react-icons/md';
 
 function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
@@ -58,6 +58,48 @@ function Sidebar() {
                     as={ReactRouterLink} to='/distribution'
                 >
                     <Icon as={MdLocalShipping} />
+                </Link>
+            </Tooltip>
+            <Tooltip label="Modify Item" placement="right">
+                <Link 
+                    color={color}
+                    _hover={{ background: hoverBg, borderRadius: 'md' }}
+                    p={2}
+                    w="100%"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    as={ReactRouterLink} to='/modifyitem'
+                >
+                    <Icon as={MdOutlineModeEdit} />
+                </Link>
+            </Tooltip>
+            <Tooltip label="Inputs" placement="right">
+                <Link 
+                    color={color}
+                    _hover={{ background: hoverBg, borderRadius: 'md' }}
+                    p={2}
+                    w="100%"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    as={ReactRouterLink} to='/inputs'
+                >
+                    <Icon as={MdOutlineInput} />
+                </Link>
+            </Tooltip>
+            <Tooltip label="Output" placement="right">
+                <Link 
+                    color={color}
+                    _hover={{ background: hoverBg, borderRadius: 'md' }}
+                    p={2}
+                    w="100%"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    as={ReactRouterLink} to='/output'
+                >
+                    <Icon as={MdOutlineOutput} />
                 </Link>
             </Tooltip>
             {/* ... other sidebar links */}
