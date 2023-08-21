@@ -18,6 +18,8 @@ import DistributionReport from "./pages/DistributionReportPage";
 import Distribution from "./components/admin/DistributionManagement";
 import AboutUs from './components/admin/AboutUs';
 import Inventory from "./components/admin/InventoryManagement";
+import Inputs from './components/admin/Input';
+import Output from './components/admin/Output';
 
 
 const httpLink = createHttpLink({
@@ -65,8 +67,15 @@ function App() {
               {/* <Route path="/dashboard" element={<Dashboard />} /> */}
               <Route path="/productlist" element={<ProductList />} />
               <Route path="/additem" element={<AddItem />} />
+<<<<<<< HEAD:foodbank/client/src/App.js
               <Route path="/modifyitem/:productId" element={<ModifyItem />} />
 
+=======
+              <Route path="/modifyitem" element={<ModifyItem />} />
+              <Route path="/modifyitem/:productId" element={<ModifyItem />} />
+              <Route path="/inputs" element={<Inputs />} />
+              <Route path="/output" element={<Output />} />
+>>>>>>> 77b9e7ad34b74d622b0cbb124a7801b3c53a9710:client/src/App.js
               <Route path="/privacy" element={<PrivacyPolicy />}/>
               <Route path="/terms" element={<TermsOfService />}/>
               <Route path="/aboutus" element={<AboutUs />}/>

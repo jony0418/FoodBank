@@ -25,3 +25,4 @@ query Query($productId: ID) {
   }
 }
 `;
+

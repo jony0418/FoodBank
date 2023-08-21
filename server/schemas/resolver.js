@@ -79,14 +79,17 @@ const resolvers = {
             category.products.push(product._id); 
             await category.save();
             return product;
-
-        },
-        updateProduct: async (parent, { id, quantity }) => {
-            return await Product.findByIdAndUpdate(id,
-                { quantity },
-                { new: true }
-            )
-        },
+          },
+          updateProduct: async (parent, { id, quantity, name, description }) => {
+            const updatedProduct = await Product.findByIdAndUpdate(id, {
+              quantity,
+              name,
+              description
+            }, { new: true });
+        
+            return updatedProduct;
+          },
+          
         deleteProduct: async (parent, { id }) => {
             return await Product.findOneAndDelete({ _id: id } )
         },
@@ -94,4 +97,5 @@ const resolvers = {
 }; 
 
 module.exports = resolvers; 
+
 

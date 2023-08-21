@@ -1,17 +1,31 @@
 import React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
 
 function PrivacyPolicy() {
+  const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("gray.700", "gray.200");
+
+  const fcontstyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    fontSize: "30px"
+  };
+
+  const right = {
+    padding: "25px",
+    flex: "80%"
+  }
+
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" flex="1" p={4}>
+      <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box flex="1" ml={4} p={5} bg="gray.100" borderRadius="md">
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
           <Text fontSize="xl" fontWeight="bold">Privacy Policy</Text>
           <Text mt={4}>
             Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.
@@ -49,7 +63,7 @@ function PrivacyPolicy() {
           <Text mt={4}>
             <strong>6. Changes to This Policy</strong>
             <Text mt={2}>
-              We may update this Privacy Policy from time to time. We encourage you to review this Policy periodically.
+              We may updatee this Privacy Policy from time to time. We encourage you to review this Policy periodically.
             </Text>
           </Text>
           {/* ... other privacy terms ... */}

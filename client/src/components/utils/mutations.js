@@ -36,22 +36,17 @@ export const addproduct = gql`
   }
 `;
 
-export const modifyProduct = gql`
-  mutation ModifyProduct($id: ID!, $name: String, $description: String, $image: String, $quantity: Int, $categoryId: ID) {
-    modifyProduct(id: $id, name: $name, description: $description, image: $image, quantity: $quantity, categoryId: $categoryId) {
-      _id
+export const updateProduct = gql`
+  mutation UpdateProduct($productId: ID!, $quantity: Int!, $name: String, $description: String) {
+    updateProduct(id: $productId, quantity: $quantity, name: $name, description: $description) {
       name
       description
-      image
       quantity
-      category {
-        name
-      }
     }
   }
 `;
 
-export const GET_PRODUCT = gql`
+export const findproduct = gql`
   query GetProduct($name: String!) {
     product(id: $id) {
       _id
@@ -59,9 +54,25 @@ export const GET_PRODUCT = gql`
       description
       image
       quantity
-      category {
-        name
-      }
+    }
+  }
+`;
+
+export const UPDATE_PRODUCT_QUANTITY = gql`
+  mutation UpdateProductQuantity($id: ID!, $quantity: Int!) {
+    updateProductQuantity(id: $id, quantity: $quantity) {
+      _id
+      quantity
+    }
+  }
+`;
+
+export const CREATE_TRANSACTION = gql`
+  mutation CreateTransaction($input: TransactionInput!) {
+    createTransaction(input: $input) {
+      _id
+      transaction_date
+      operation
     }
   }
 `;
