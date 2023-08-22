@@ -13,14 +13,6 @@ import {
   ListIcon,
   useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
 import { MdCheckCircle } from "react-icons/md";
 import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
@@ -63,24 +55,13 @@ function Dashboard() {
   const totalCategories = data.categories.length;
   const totalQuantity = data.products.reduce((sum, product) => sum + product.quantity, 0);
 
-  const fcontstyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    fontSize: "30px",
-    textAlign: "center"
-  };
-
-  const right = {
-    padding: "25px",
-    flex: "80%"
-  }
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" flex="1" flexWrap= "wrap" p={4}>
         <Sidebar />
-        <Box style={right} bg={bg} borderRadius="md" flex="1">
+        <Box flex="1" ml={4} p={5} bg={bg} borderRadius="md">
           <Stack spacing={5}>
             <Flex justify="space-between">
               <Stat>
