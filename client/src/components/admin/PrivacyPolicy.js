@@ -8,24 +8,14 @@ function PrivacyPolicy() {
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.700", "gray.200");
 
-  const fcontstyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    fontSize: "30px"
-  };
-
-  const right = {
-    padding: "25px",
-    flex: "80%"
-  }
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" flex="1" flexWrap= "wrap" p={4}>
         <Sidebar />
-        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
+        <Box bg={bg} borderRadius="md" ml={4} p={5} flex="1" color={color}>
           <Text fontSize="xl" fontWeight="bold">Privacy Policy</Text>
           <Text mt={4}>
             Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information.
