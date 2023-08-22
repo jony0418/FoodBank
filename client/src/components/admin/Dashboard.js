@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useQuery, gql } from "@apollo/client";
 import {
   Box,
   Flex,
   Stat,
+  Text,
   StatLabel,
   StatNumber,
   StatHelpText,
@@ -13,6 +14,8 @@ import {
   ListIcon,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
+
 import {
   LineChart,
   Line,
@@ -21,12 +24,13 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import { MdCheckCircle } from "react-icons/md";
+import { MdCallMade, MdCallReceived } from "react-icons/md";
 import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
 import Footer from "../layout/Footer";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
+import { getDataDistribution } from "../utils/api";
 
 const DASHBOARD_DATA = gql`
   query GetDashboardData {
@@ -45,9 +49,38 @@ const DASHBOARD_DATA = gql`
 `;
 
 function Dashboard() {
-  const { loading, error, data } = useQuery(DASHBOARD_DATA);
+  const { loading: Ploading, error: Perror, data: Pdata } = useQuery(DASHBOARD_DATA);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [productIndex, setProductIndex] = useState(null);
+  const [Clicked, setClicked] = useState(false);
+
+  const handleClick = (index) => {
+    if (index != productIndex) {
+      setClicked(true);
+      setProductIndex(index);
+    } else {
+      setClicked(false);
+      setProductIndex(null);
+    }
+  };
+
   const navigate = useNavigate();
   const bg = useColorModeValue("white", "gray.800");
+
+  const fetchData = async () => {
+    try {
+      const inventoryData = await getDataDistribution();
+      setData(inventoryData);
+      console.log(inventoryData);
+      setLoading(false);
+    } catch (error) {
+      //console.error('Error:', error);
+      setError(error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!Auth.loggedIn()) {
@@ -56,12 +89,19 @@ function Dashboard() {
     }
   }, [navigate]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const totalProducts = data.products.length;
-  const totalCategories = data.categories.length;
-  const totalQuantity = data.products.reduce((sum, product) => sum + product.quantity, 0);
+  if (Ploading) return <p>Loading...</p>;
+  if (Perror) return <p>Error: {Perror.message}</p>;
+
+  const totalProducts = Pdata.products.length;
+  const totalCategories = Pdata.categories.length;
+  const totalQuantity = Pdata.products.reduce((sum, product) => sum + product.quantity, 0);
+
+
+
 
   const fcontstyle = {
     display: "flex",
@@ -75,6 +115,21 @@ function Dashboard() {
     flex: "80%"
   }
 
+  const table_text = {
+    fontSize: "20px",
+  }
+  const table_product_text = {
+    fontSize: "14px",
+  }
+  const ReceiveIcon = {
+    color: 'green'
+  };
+  const DistributeIcon = {
+    color: 'red'
+  };
+  const cursor = {
+    cursor: "pointer"
+  };
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
@@ -99,22 +154,116 @@ function Dashboard() {
                 <StatHelpText>Total kg in stock</StatHelpText>
               </Stat>
             </Flex>
-            {/* You can add a chart here if needed */}
-            <List spacing={3}>
-              {data.products.map((product) => (
-                <ListItem key={product.name}>
-                  <ListIcon as={MdCheckCircle} color="green.500" />
-                  {product.name} - Quantity: {product.quantity}
-                </ListItem>
-              ))}
-            </List>
+            {data ? (<Table variant="simple">
+              <Thead>
+                <Tr>
+                  <Th>Op.</Th>
+                  <Th>Operation</Th>
+                  <Th>Products No.</Th>
+                  <Th>Units</Th>
+                  <Th>Total</Th>
+                  <Th>Purpose</Th>
+                  <Th>BatchSize</Th>
+                  <Th>Date</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {data.map((transaction, index) => (
+                  <React.Fragment key={index}>
+
+                    <Tr key={index} onClick={() => handleClick(index)} style={cursor}>
+                      <Td style={table_text}>
+                        {transaction.operation === "Receive" ? <MdCallReceived style={ReceiveIcon} /> : <MdCallMade style={DistributeIcon} />}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.operation}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.product.length}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.unit}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.product.map(product => product.quantity * (transaction.unit)).reduce((sum, quantity) => sum + quantity, 0)}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.purpose}
+                      </Td>
+                      <Td style={table_text}>
+                        {transaction.batchSize}
+                      </Td>
+                      <Td style={table_text}>
+                        {new Date(transaction.createdAt).toLocaleDateString()}
+                      </Td>
+                    </Tr>
+                    {Clicked && productIndex == index && <OpenProductList data={transaction.product} unit={transaction.unit} />
+                    }
+                  </React.Fragment>
+                ))}
+              </Tbody>
+            </Table>) : (false)}
+            {loading && <Text mb={4}>Loading...</Text>}
+            {error && <Text mb={4}>Error: {error.message}</Text>}
           </Stack>
         </Box>
-      </Flex>
+      </Flex >
       <Footer />
-    </Flex>
+    </Flex >
   );
 }
 
+function OpenProductList(props) {
+  console.log(props.data);
+
+  const table_product_text = {
+    fontSize: "14px",
+    lineHeight: "1",
+    padding: "6px 10px",
+  }
+  const table_product_text_title = {
+    fontSize: "14px",
+    fontWeight: "bold",
+    lineHeight: "1",
+    padding: "6px 10px",
+  }
+
+  return (
+    <React.Fragment>
+      <Tr>
+        <Td ></Td>
+        <Td style={table_product_text_title}>
+          Name
+        </Td>
+        <Td style={table_product_text_title}>
+          Quantity
+        </Td>
+        <Td style={table_product_text_title}>
+          Units
+        </Td>
+        <Td style={table_product_text_title}>
+          Total
+        </Td>
+      </Tr>
+      {props.data.map((product, index) => (
+        <Tr key={index}>
+          <Td ></Td>
+          <Td style={table_product_text}>
+            {product.name}
+          </Td>
+          <Td style={table_product_text}>
+            {product.quantity}
+          </Td>
+          <Td style={table_product_text}>
+            {props.unit}
+          </Td>
+          <Td style={table_product_text}>
+            {product.quantity * props.unit}
+          </Td>
+        </Tr>
+      ))}
+    </React.Fragment>
+  );
+}
 export default Dashboard;
 

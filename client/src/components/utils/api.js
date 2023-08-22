@@ -27,3 +27,25 @@ export const sendDataInventory = (data) =>
         .catch((error) => {
             console.error('Error:', error);
         });
+
+export const getDataInventory = () =>
+    fetch(urldis, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+export const getDataDistribution = () =>
+    fetch(urlin, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then((response) => response.json())
+        .catch((error) => {
+            console.error('Error:', error);
+        });
