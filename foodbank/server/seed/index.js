@@ -14,19 +14,19 @@ const mockProducts = [
 const mockTransactions = [
     {
         purpose: 'Receive',
-        batch: 'Batch 1',
+        unit: 1,
         batchSize: 'Small',
         operation: 'Receive'
     },
     {
         purpose: 'Distribute',
-        batch: 'Batch 2',
+        unit: 3,
         batchSize: 'Large',
         operation: 'Distribute'
     },
     {
         purpose: 'Distribute',
-        batch: 'Batch 3',
+        unit: 3,
         batchSize: 'Large',
         operation: 'Distribute'
     },
@@ -45,11 +45,11 @@ connection.once('open', async () => {
         const createdProducts = await Product.create(mockProducts);
 
         const batch1 = [
-            buildInventory(createdProducts[0], 20),
-            buildInventory(createdProducts[1], 20),
-            buildInventory(createdProducts[2], 20),
-            buildInventory(createdProducts[3], 20),
-            buildInventory(createdProducts[4], 20)
+            buildInventory(createdProducts[0], 100),
+            buildInventory(createdProducts[1], 100),
+            buildInventory(createdProducts[2], 100),
+            buildInventory(createdProducts[3], 100),
+            buildInventory(createdProducts[4], 100)
         ];
         const batch2 = [
             buildInventory(createdProducts[0], 4),

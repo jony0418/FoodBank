@@ -16,9 +16,10 @@ const transactionSchema = new Schema({
         type: String,
         required: true
     },
-    batch: {
-        type: String,
-        required: true
+    unit: {
+        type: Number,
+        required: true,
+        default: 1
     },
     batchSize: {
         type: String,
