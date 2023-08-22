@@ -97,17 +97,6 @@ function RegisterProductInput() {
 
   };
 
-  const fcontstyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    fontSize: "30px"
-  };
-
-  const right = {
-    padding: "25px",
-    flex: "80%"
-  }
-
   useEffect(() => {
     if (doneMessage) {
       const timer = setTimeout(() => {
@@ -142,9 +131,9 @@ function RegisterProductInput() {
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" flex="1" flexWrap= "wrap" p={4}>
         <Sidebar />
-        <Flex style={right} bg={bg} borderRadius="md" flex="1" color={color} direction="row">
+        <Flex bg={bg} borderRadius="md" flex="1"  ml={4} p={5} color={color}>
           <Box flex="1" bg={bg} borderRadius="md" marginEnd='5px'>
             <Text mb={4}>Select Product:</Text>
             <Input
