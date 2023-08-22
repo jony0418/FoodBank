@@ -127,6 +127,9 @@ function Dashboard() {
   const DistributeIcon = {
     color: 'red'
   };
+  const cursor = {
+    cursor: "pointer"
+  };
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
@@ -168,7 +171,7 @@ function Dashboard() {
                 {data.map((transaction, index) => (
                   <React.Fragment key={index}>
 
-                    <Tr key={index} onClick={() => handleClick(index)}>
+                    <Tr key={index} onClick={() => handleClick(index)} style={cursor}>
                       <Td style={table_text}>
                         {transaction.operation === "Receive" ? <MdCallReceived style={ReceiveIcon} /> : <MdCallMade style={DistributeIcon} />}
                       </Td>
