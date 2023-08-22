@@ -13,12 +13,14 @@ import {
   Flex,
   Box,
   useColorModeValue,
+  Icon
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
+import { MdOutlineModeEdit } from 'react-icons/md'; 
 
 const GET_PRODUCTS = gql`
 query {
@@ -101,7 +103,9 @@ function InventoryManagement() {
                     <Td>{product.image}</Td>
                     <Td>{product.quantity}</Td>
                     <Td>
-                      <Link to={`/modifyitem/${product._id}`}>Modify</Link>
+                      <Link to={`/modifyitem/${product._id}`}>
+                      <Icon as={MdOutlineModeEdit} />
+                      </Link>
                     </Td>
                     <Td>
                       <FaTrash
