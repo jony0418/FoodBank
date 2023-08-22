@@ -4,7 +4,7 @@ import { InputGroup, Input, InputLeftAddon, Button, Flex, Box, List, ListItem, u
 import Header from '../components/layout/Header';
 import Sidebar from '../components/layout/Sidebar';
 import Footer from '../components/layout/Footer';
-import { modifyProduct } from '../components/utils/mutations';
+import { updateProduct } from '../components/utils/mutations';
 
 const GET_PRODUCTS = gql`
   query GetProducts {
@@ -50,7 +50,7 @@ function ModifyItem() {
     skip: !searchName,
   });
 
-  const [modifyProductMutation] = useMutation(modifyProduct);
+  const [modifyProductMutation] = useMutation(updateProduct);
   const [suggestions, setSuggestions] = useState([]);
   const { loading: loadingProducts, data: productsData } = useQuery(GET_PRODUCTS);
 

@@ -122,4 +122,4 @@ function InventoryManagement() {
   );
 }
 
-export default ProductList;
+export default InventoryManagement; 
