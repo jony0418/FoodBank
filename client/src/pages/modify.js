@@ -7,7 +7,7 @@ import { GET_PRODUCT } from '../components/utils/queries';
 import { updateProduct } from '../components/utils/mutations'; 
 
 
-function ModifyItem() {
+function Modify() {
 
   const location= useLocation()
   const navigate = useNavigate(); 
@@ -102,4 +102,4 @@ function ModifyItem() {
   );
 }
 
-export default ModifyItem;
+export default Modify;
