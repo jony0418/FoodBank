@@ -10,15 +10,16 @@ const transactionSchema = new Schema({
     ],
     transaction_date: {
         type: Date,
-        required: true
+        default: Date.now()
     },
     purpose: {
         type: String,
         required: true
     },
-    batch: {
-        type: String,
-        required: true
+    unit: {
+        type: Number,
+        required: true,
+        default: 1
     },
     batchSize: {
         type: String,
