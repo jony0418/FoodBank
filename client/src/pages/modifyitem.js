@@ -103,24 +103,14 @@ function ModifyItem() {
     width: '100px',
   };
 
-  const fcontstyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    fontSize: "30px"
-  };
-
-  const right = {
-    padding: "25px",
-    flex: "80%"
-  }
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" flex="1" flexWrap= "wrap" p={4}>
         <Sidebar />
-        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
+        <Box bg={bg} borderRadius="md" ml={4} p={5} flex="1" color={color}>
           <InputGroup>
             <InputLeftAddon children='Search by Name' />
             <Input
