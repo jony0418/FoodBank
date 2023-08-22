@@ -114,7 +114,7 @@ img {
 
 span[role="img"] {
   cursor: default;
-} 
+}
 
 input {
   font-size: 1rem;
@@ -197,6 +197,9 @@ input:focus {
 
 .error-text {
   color: var(--error);
+} 
+.done-text {
+  color: var(--green);
 }
 
 @media screen and (max-width: 768px) {

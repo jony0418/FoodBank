@@ -41,7 +41,7 @@ const DELETE_PRODUCT = gql`
   }
 `;
 
-function InventoryManagement() {
+function ProductList() {
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.700", "gray.200");
   const products = data?.products || []; 
@@ -122,4 +122,4 @@ function InventoryManagement() {
   );
 }
 
-export default InventoryManagement; 
+export default ProductList; 

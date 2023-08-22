@@ -46,7 +46,7 @@ function AddItem() {
       const { data } = await addProduct({
         variables: {
           ...inputValues,
-          quantity: parseInt(inputValues.quantity), 
+          quantity:0, 
         },
       });
 
@@ -54,7 +54,7 @@ function AddItem() {
         name: '',
         description: '',
         image: '',
-        quantity: '', 
+        quantity: '0', 
         category: '',
 
       }); 
@@ -110,7 +110,7 @@ function AddItem() {
               <InputLeftAddon style={inputLeftAddonStyle} children='Quantity' />
               <Input
                 placeholder='How many'
-                value={inputValues.quantity}
+                value={0} disabled='true'
                 onChange={(e) => handleInputChange('quantity', e.target.value)}
               />
             </InputGroup>

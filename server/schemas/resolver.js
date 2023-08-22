@@ -35,7 +35,7 @@ const resolvers = {
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email }); 
 
-            const correctPW = await user.isCorrectPassword(password);
+            const correctPW = (await user.isCorrectPassword(password))?true:false;
 
             if (!user || !correctPW ) {
                 throw new AuthenticationError('Incorrect credentials');
