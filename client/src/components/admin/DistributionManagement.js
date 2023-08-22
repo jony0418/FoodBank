@@ -18,9 +18,6 @@ const FIND_PRODUCT = gql`
 `;
 
 function Distribution() {
-  const [updateProductQuantity] = useMutation(UPDATE_PRODUCT_QUANTITY);
-  const [createTransaction] = useMutation(CREATE_TRANSACTION);
-
   const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState('');
   const [productId, setIdProduct] = useState('');
@@ -31,6 +28,7 @@ function Distribution() {
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [doneMessage, setDoneMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const bg = useColorModeValue("white", "gray.800");
   const color = useColorModeValue("gray.700", "gray.200");
@@ -75,13 +73,32 @@ function Distribution() {
     if (doneMessage) {
       const timer = setTimeout(() => {
         setDoneMessage('');
-        setIsButtonDisabled(false);
-        navigate('/dashboard');
+        if (products && unit && purpose && batch) {
+          setProductName('');
+          setProductQuantity('');
+          setIdProduct('');
+          setUnit('');
+          setPurpose('');
+          setBatch('');
+          setIsButtonDisabled(false);
+          navigate('/dashboard');
+        }
       }, 3000);
 
       return () => { clearTimeout(timer); };
     }
   }, [doneMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
+
+      return () => { clearTimeout(timer); };
+    }
+  }, [errorMessage]);
+
 
   const handleDistribute = async () => {
     // Loop through products, multiply by the number of families, and update the quantity
@@ -101,41 +118,9 @@ function Distribution() {
 
 
       setDoneMessage('Transaction submitted successfully!');
-
-      setProductName('');
-      setProductQuantity('');
-      setIdProduct('');
-      setUnit('');
-      setPurpose('');
-      setBatch('');
     } else {
-
+      setErrorMessage('Complete the transaction information before submiting');
     }
-
-
-    // const totalQuantity = product.quantity * families;
-
-    // Update the product's quantity
-    // await updateProductQuantity({
-    //   variables: {
-    //     id: product.id,
-    //     quantity: totalQuantity,
-    //   },
-    // });
-
-    // Create a new transaction
-    // await createTransaction({
-    //   variables: {
-    //     input: {
-    //       product: product,
-    //       transaction_date: new Date(),
-    //       purpose: 'out',
-    //       batch: totalQuantity.toString(),
-    //       batchSize: totalQuantity.toString(),
-    //       operation: 'Distribute',
-    //     },
-    //   },
-    // });
 
   };
 
@@ -157,7 +142,7 @@ function Distribution() {
       <Flex as="main" style={fcontstyle} flex="1" p={4}>
         <Sidebar />
         <Flex style={right} bg={bg} borderRadius="md" flex="1" color={color} direction="row">
-          <Box flex="1" bg={bg} borderRadius="md">
+          <Box flex="1" bg={bg} borderRadius="md" marginEnd='5px'>
             <Text mb={4}>Add Products:</Text>
             <Input
               placeholder="Type product name"
@@ -216,8 +201,13 @@ function Distribution() {
               Distribute
             </Button>
             {
+              errorMessage && (
+                <Text mb={4} className='error-text'>{errorMessage}</Text>
+              )
+            }
+            {
               doneMessage && (
-                <Text mb={4}>{doneMessage}</Text>
+                <Text mb={4} className='done-text'>{doneMessage}</Text>
               )
             }
 
