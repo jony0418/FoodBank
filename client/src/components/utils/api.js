@@ -1,5 +1,5 @@
-const urldis = './distribution/';
-const urlin = './inventory/';
+const urldis = './api/distribution/';
+const urlin = './api/inventory/';
 
 export const sendDataDistribution = (data) =>
     fetch(urldis, {
