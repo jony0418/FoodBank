@@ -124,25 +124,15 @@ function Distribution() {
 
   };
 
-  const fcontstyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    fontSize: "30px"
-  };
-
-  const right = {
-    padding: "25px",
-    flex: "80%"
-  }
 
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" flex="1" flexWrap= "wrap" p={4}>
         <Sidebar />
-        <Flex style={right} bg={bg} borderRadius="md" flex="1" color={color} direction="row">
-          <Box flex="1" bg={bg} borderRadius="md" marginEnd='5px'>
+        <Flex flex="1" ml={4} p={5} bg={bg} borderRadius="md" color={color} direction="row">
+          <Box flex="1" bg={bg} borderRadius="md">
             <Text mb={4}>Add Products:</Text>
             <Input
               placeholder="Type product name"
