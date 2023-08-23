@@ -75,8 +75,8 @@ const Login = (props) => {
             </Stack>
           </form>
           {error && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {error.message}
+            <div className="my-3 p-3 bg-danger error-text">
+              {'Incorrect Credentials'}
             </div>
           )}
           <Box>
