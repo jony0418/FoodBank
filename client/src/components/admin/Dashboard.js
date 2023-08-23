@@ -13,6 +13,7 @@ import {
   ListItem,
   ListIcon,
   useColorModeValue,
+  useBreakpointValue
 } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 
@@ -55,6 +56,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [productIndex, setProductIndex] = useState(null);
   const [Clicked, setClicked] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false }); // Determine if mobile or not
 
   const handleClick = (index) => {
     if (index != productIndex) {
@@ -133,10 +135,10 @@ function Dashboard() {
   return (
     <Flex direction="column" minHeight="100vh">
       <Header />
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" className='main' flex="1" p={1}>
         <Sidebar />
         <Box style={right} bg={bg} borderRadius="md" flex="1">
-          <Stack spacing={5}>
+          <Stack spacing={2}>
             <Flex justify="space-between">
               <Stat>
                 <StatLabel>Total Products</StatLabel>
@@ -154,59 +156,79 @@ function Dashboard() {
                 <StatHelpText>Total kg in stock</StatHelpText>
               </Stat>
             </Flex>
-            {data ? (<Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th>Op.</Th>
-                  <Th>Operation</Th>
-                  <Th>Products No.</Th>
-                  <Th>Units</Th>
-                  <Th>Total</Th>
-                  <Th>Purpose</Th>
-                  <Th>BatchSize</Th>
-                  <Th>Date</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {data.map((transaction, index) => (
-                  <React.Fragment key={index}>
+            <Box overflowX="auto">
 
-                    <Tr key={index} onClick={() => handleClick(index)} style={cursor}>
-                      <Td style={table_text}>
-                        {transaction.operation === "Receive" ? <MdCallReceived style={ReceiveIcon} /> : <MdCallMade style={DistributeIcon} />}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.operation}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.product.length}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.unit}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.product.map(product => product.quantity * (transaction.unit)).reduce((sum, quantity) => sum + quantity, 0)}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.purpose}
-                      </Td>
-                      <Td style={table_text}>
-                        {transaction.batchSize}
-                      </Td>
-                      <Td style={table_text}>
-                        {new Date(transaction.createdAt).toLocaleDateString()}
-                      </Td>
-                    </Tr>
-                    {Clicked && productIndex == index && <OpenProductList data={transaction.product} unit={transaction.unit} />
+              {data ? (<Table variant="simple" m={0} p={0}>
+                <Thead>
+                  <Tr>
+                    <Th>Op.</Th>
+                    {!isMobile &&
+                      <React.Fragment>
+                        <Th>Operation</Th>
+                      </React.Fragment>
                     }
-                  </React.Fragment>
-                ))}
-              </Tbody>
-            </Table>) : (false)}
-            {loading && <Text mb={4}>Loading...</Text>}
-            {error && <Text mb={4}>Error: {error.message}</Text>}
+                    <Th>Products No.</Th>
+                    <Th>Units</Th>
+                    <Th>Total</Th>
+                    {!isMobile &&
+                      <React.Fragment>
+                        <Th>Purpose</Th>
+                        <Th>BatchSize</Th>
+                        <Th>Date</Th>
+                      </React.Fragment>
+                    }
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {data.map((transaction, index) => (
+                    <React.Fragment key={index}>
+                      <Tr key={index} onClick={() => handleClick(index)} style={cursor}>
+
+                        <Td style={table_text}>
+                          {transaction.operation === "Receive" ? <MdCallReceived style={ReceiveIcon} /> : <MdCallMade style={DistributeIcon} />}
+                        </Td>
+                        {!isMobile &&
+                          <React.Fragment>
+                            <Td style={table_text}>
+                              {transaction.operation}
+                            </Td>
+                          </React.Fragment>
+                        }
+                        <Td style={table_text}>
+                          {transaction.product.length}
+                        </Td>
+                        <Td style={table_text}>
+                          {transaction.unit}
+                        </Td>
+                        <Td style={table_text}>
+                          {transaction.product.map(product => product.quantity * (transaction.unit)).reduce((sum, quantity) => sum + quantity, 0)}
+                        </Td>
+                        {!isMobile &&
+                          <React.Fragment>
+                            <Td style={table_text}>
+                              {transaction.purpose}
+                            </Td>
+                            <Td style={table_text}>
+                              {transaction.batchSize}
+                            </Td>
+                            <Td style={table_text}>
+                              {new Date(transaction.createdAt).toLocaleDateString()}
+                            </Td>
+                          </React.Fragment>
+                        }
+
+                      </Tr>
+                      {Clicked && productIndex == index && <OpenProductList data={transaction.product} unit={transaction.unit} />
+                      }
+                    </React.Fragment>
+                  ))}
+                </Tbody>
+              </Table>) : (false)}
+              {loading && <Text mb={4}>Loading...</Text>}
+              {error && <Text mb={4}>Error: {error.message}</Text>}
+            </Box>
           </Stack>
-        </Box>
+        </Box >
       </Flex >
       <Footer />
     </Flex >
@@ -215,10 +237,12 @@ function Dashboard() {
 
 function OpenProductList(props) {
   console.log(props.data);
+  const isMobile = useBreakpointValue({ base: true, md: false }); // Determine if mobile or not
 
   const table_product_text = {
     fontSize: "14px",
     lineHeight: "1",
+    whiteSpace: "nowrap",
     padding: "6px 10px",
   }
   const table_product_text_title = {
@@ -231,7 +255,10 @@ function OpenProductList(props) {
   return (
     <React.Fragment>
       <Tr>
-        <Td ></Td>
+        {!isMobile &&
+          <React.Fragment>
+            <Td ></Td>
+          </React.Fragment>}
         <Td style={table_product_text_title}>
           Name
         </Td>
@@ -247,7 +274,10 @@ function OpenProductList(props) {
       </Tr>
       {props.data.map((product, index) => (
         <Tr key={index}>
-          <Td ></Td>
+          {!isMobile &&
+            <React.Fragment>
+              <Td ></Td>
+            </React.Fragment>}
           <Td style={table_product_text}>
             {product.name}
           </Td>

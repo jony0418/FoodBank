@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack, Link, useColorModeValue, Icon, Tooltip } from '@chakra-ui/react';
+import { VStack, Flex, useBreakpointValue, Link, useColorModeValue, Icon, Tooltip } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { MdDashboard, MdInventory, MdLocalShipping, MdOutlineModeEdit, MdOutlineInput, MdOutlineOutput } from 'react-icons/md';
 
@@ -7,6 +7,7 @@ function Sidebar() {
     const bg = useColorModeValue("white", "gray.800");
     const hoverBg = useColorModeValue("gray.200", "gray.600");
     const color = useColorModeValue("gray.700", "gray.200");
+    const isMobile = useBreakpointValue({ base: true, md: false }); // Determine if mobile or not
 
     const left = {
         padding: "10px",
@@ -14,14 +15,16 @@ function Sidebar() {
     }
 
     return (
-        <VStack 
+        <Flex
             as="aside"
-            style={left} 
+            className="sidebar"
             bg={bg}
-            p={4} 
-            spacing={7} 
+            p={4}
+            spacing={7}
             align="center" // Align icons to the center
-            boxShadow="md"             
+            boxShadow="md"
+            flexDirection={isMobile ? 'row' : 'column'} // Horizontal on mobile, vertical on larger screens
+            wrap={isMobile ? 'nowrap' : 'wrap'} // Prevent wrapping on mobile
             minWidth={[
                 '100%', // 0-30em
                 '70%', // 30em-48em
@@ -30,7 +33,7 @@ function Sidebar() {
             ]}
         >
             <Tooltip label="Dashboard" placement="right">
-                <Link 
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -45,7 +48,7 @@ function Sidebar() {
                 </Link>
             </Tooltip>
             <Tooltip label="Inventory Management" placement="right">
-                <Link 
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -59,7 +62,7 @@ function Sidebar() {
                 </Link>
             </Tooltip>
             <Tooltip label="Distribution Management" placement="right">
-                <Link 
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -73,7 +76,7 @@ function Sidebar() {
                 </Link>
             </Tooltip>
             <Tooltip label="Modify Item" placement="right">
-                <Link 
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -87,7 +90,7 @@ function Sidebar() {
                 </Link>
             </Tooltip>
             <Tooltip label="Inputs" placement="right">
-                <Link 
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -100,8 +103,8 @@ function Sidebar() {
                     <Icon as={MdOutlineInput} />
                 </Link>
             </Tooltip>
-            <Tooltip label="Output" placement="right">
-                <Link 
+            {/* <Tooltip label="Output" placement="right">
+                <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
                     p={2}
@@ -113,9 +116,9 @@ function Sidebar() {
                 >
                     <Icon as={MdOutlineOutput} />
                 </Link>
-            </Tooltip>
+            </Tooltip> */}
             {/* ... other sidebar links */}
-        </VStack>
+        </Flex>
     );
 }
 
