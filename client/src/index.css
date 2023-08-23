@@ -197,13 +197,67 @@ input:focus {
 
 .error-text {
   color: var(--error);
-} 
+}
+
 .done-text {
   color: var(--green);
 }
 
+.table_product_text_title {
+  font-size: "15px";
+  font-weight: "bold";
+  padding: "6px 10px";
+}
+
+.table_product_text {
+  font-size: "15px";
+  font-weight: "bold";
+  padding: "6px 10px";
+}
+
+table {
+  width: 100%;
+  overflow: auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column; 
+  }
+
   .card {
     width: 100%;
+  }
+
+  .sidebar {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+  }
+  table{
+    font-size: 1.2rem;
+    margin-left: 0px;
+    padding: 0px;
+  }
+  .sidebar a {
+    padding: 5px;
+    margin-top: 0px;
+  }
+
+  .table_product_text_title {
+    font-size: "1vw";
+    font-weight: "bold";
+  }
+
+  .table_product_text {
+    font-size: "2.5vw";
   }
 }
