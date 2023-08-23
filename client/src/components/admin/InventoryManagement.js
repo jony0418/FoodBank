@@ -13,14 +13,15 @@ import {
   Flex,
   Box,
   useColorModeValue,
-  Icon
+  Icon,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FaTrash } from 'react-icons/fa';
 import Header from '../layout/Header';
 import Sidebar from '../layout/Sidebar';
 import Footer from '../layout/Footer';
-import { MdOutlineModeEdit } from 'react-icons/md'; 
+import { MdOutlineModeEdit } from 'react-icons/md';
 
 const GET_PRODUCTS = gql`
 query {
@@ -48,7 +49,8 @@ function InventoryManagement() {
   const color = useColorModeValue("gray.700", "gray.200");
 
   const { loading, error, data } = useQuery(GET_PRODUCTS);
-  const [deleteProduct] = useMutation(DELETE_PRODUCT); 
+  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const isMobile = useBreakpointValue({ base: true, md: false }); // Determine if mobile or not
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -59,11 +61,11 @@ function InventoryManagement() {
       await deleteProduct({
         variables: { id: productId },
         refetchQueries: [{ query: GET_PRODUCTS }],
-      }); 
+      });
     } catch (err) {
-      console.error(err); 
+      console.error(err);
     }
-  }; 
+  };
 
   const fcontstyle = {
     display: "flex",
@@ -80,16 +82,22 @@ function InventoryManagement() {
     <Flex direction="column" minHeight="100vh">
       <Header />
 
-      <Flex as="main" style={fcontstyle} flex="1" p={4}>
+      <Flex as="main" className='main'style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color}>
-          <TableContainer>
-            <Table variant='simple'>
+        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color} m={0} p={0}>
+          <TableContainer overflowX="auto" m={0} p={0}>
+            <Table variant='simple' m={0} p={0}>
               <Thead>
                 <Tr>
                   <Th>Name</Th>
-                  <Th>Description</Th>
-                  <Th>Image</Th>
+                  {!isMobile &&
+                    <React.Fragment>
+                      <Th>Description</Th>
+                    </React.Fragment>}
+                  {!isMobile &&
+                    <React.Fragment>
+                      <Th>Image</Th>
+                    </React.Fragment>}
                   <Th>Quantity</Th>
                   <Th>Modify Item</Th>
                   <Th>Delete Item</Th>
@@ -99,12 +107,18 @@ function InventoryManagement() {
                 {data.products.map(product => (
                   <Tr key={product._id}>
                     <Td>{product.name}</Td>
-                    <Td>{product.description}</Td>
+                    {!isMobile &&
+                      <React.Fragment>
+                        <Td>{product.description}</Td>
+                      </React.Fragment>}
+                      {!isMobile &&
+                    <React.Fragment>
                     <Td>{product.image}</Td>
+                    </React.Fragment>}
                     <Td>{product.quantity}</Td>
                     <Td>
                       <Link to={`/modifyitem/${product._id}`}>
-                      <Icon as={MdOutlineModeEdit} />
+                        <Icon as={MdOutlineModeEdit} />
                       </Link>
                     </Td>
                     <Td>
