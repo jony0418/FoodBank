@@ -1,5 +1,5 @@
 import React from 'react';
-import { VStack,Flex,useBreakpointValue , Link, useColorModeValue, Icon, Tooltip } from '@chakra-ui/react';
+import { VStack, Flex, useBreakpointValue, Link, useColorModeValue, Icon, Tooltip } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { MdDashboard, MdInventory, MdLocalShipping, MdOutlineModeEdit, MdOutlineInput, MdOutlineOutput } from 'react-icons/md';
 
@@ -103,7 +103,7 @@ function Sidebar() {
                     <Icon as={MdOutlineInput} />
                 </Link>
             </Tooltip>
-            <Tooltip label="Output" placement="right">
+            {/* <Tooltip label="Output" placement="right">
                 <Link
                     color={color}
                     _hover={{ background: hoverBg, borderRadius: 'md' }}
@@ -116,7 +116,7 @@ function Sidebar() {
                 >
                     <Icon as={MdOutlineOutput} />
                 </Link>
-            </Tooltip>
+            </Tooltip> */}
             {/* ... other sidebar links */}
         </Flex>
     );
