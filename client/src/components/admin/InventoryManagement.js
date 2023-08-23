@@ -84,8 +84,7 @@ function InventoryManagement() {
 
       <Flex as="main" className='main'style={fcontstyle} flex="1" p={4}>
         <Sidebar />
-        <Box style={right} bg={bg} borderRadius="md" flex="1" color={color} m={0} p={0}>
-          <TableContainer overflowX="auto" m={0} p={0}>
+        <Box style={right}overflowX="auto" bg={bg} borderRadius="md" flex="1" color={color}>
             <Table variant='simple' m={0} p={0}>
               <Thead>
                 <Tr>
@@ -132,8 +131,6 @@ function InventoryManagement() {
                 ))}
               </Tbody>
             </Table>
-          </TableContainer>
-
           <Flex justifyContent='center' mt={4}>
             <Button as={Link} to='/additem' colorScheme='green'>
               Add New Item
@@ -143,7 +140,7 @@ function InventoryManagement() {
       </Flex>
 
       <Footer />
-    </Flex>
+    </Flex >
   );
 }
 
