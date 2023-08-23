@@ -237,10 +237,12 @@ function Dashboard() {
 
 function OpenProductList(props) {
   console.log(props.data);
+  const isMobile = useBreakpointValue({ base: true, md: false }); // Determine if mobile or not
 
   const table_product_text = {
     fontSize: "14px",
     lineHeight: "1",
+    whiteSpace: "nowrap",
     padding: "6px 10px",
   }
   const table_product_text_title = {
@@ -253,7 +255,10 @@ function OpenProductList(props) {
   return (
     <React.Fragment>
       <Tr>
-        <Td ></Td>
+        {!isMobile &&
+          <React.Fragment>
+            <Td ></Td>
+          </React.Fragment>}
         <Td style={table_product_text_title}>
           Name
         </Td>
@@ -269,7 +274,10 @@ function OpenProductList(props) {
       </Tr>
       {props.data.map((product, index) => (
         <Tr key={index}>
-          <Td ></Td>
+          {!isMobile &&
+            <React.Fragment>
+              <Td ></Td>
+            </React.Fragment>}
           <Td style={table_product_text}>
             {product.name}
           </Td>
